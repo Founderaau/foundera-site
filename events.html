@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Foundera Events | Pitch nights, panels, and workshops. All in Sydney." />
+  <meta name="theme-color" content="#0A0A0A" />
+  <meta property="og:title"       content="Events | Foundera" />
+  <meta property="og:description" content="Pitch nights, panels, and workshops. All in Sydney." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://foundera.com.au/events.html" />
+  <meta property="og:image"       content="https://foundera.com.au/og-image.png" />
+  <meta property="og:site_name"   content="Foundera" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Events | Foundera" />
+  <meta name="twitter:description" content="Pitch nights, panels, and workshops. All in Sydney." />
+  <meta name="twitter:image"       content="https://foundera.com.au/og-image.png" />
+  <title>Events | Foundera</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 38' fill='none'%3E%3Ctext x='16' y='25' text-anchor='middle' font-family='Georgia%2Cserif' font-size='26' font-weight='700' fill='%230A0A0A'%3EF%3C%2Ftext%3E%3Cpath d='M2 31 Q10 27 16 29 Q22 27 30 31' stroke='%230A0A0A' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3Cpath d='M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5' stroke='%230A0A0A' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C%2Fsvg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Filter pills */
+    .filter-pills  { display:flex; flex-wrap:wrap; gap:var(--sp-3); justify-content:center; padding:var(--sp-10) 0 0; }
+    .filter-pill   { cursor:pointer; }
+    .pill-active   { background:var(--color-black); border-color:var(--color-black); color:var(--color-white); }
+
+    /* Empty state */
+    .events-empty-state {
+      border:1px solid var(--color-border);
+      border-radius:var(--r-card);
+      padding:var(--sp-12);
+      text-align:center;
+      margin-bottom:var(--sp-16);
+      background:var(--color-white);
+    }
+    .events-empty-state .empty-label {
+      font-size:var(--text-xs);
+      font-weight:var(--fw-black);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--color-grey);
+      margin-bottom:var(--sp-4);
+    }
+    .events-empty-state .empty-headline {
+      font-size:var(--text-2xl);
+      font-weight:var(--fw-black);
+      letter-spacing:var(--ls-tighter);
+      margin-bottom:var(--sp-3);
+    }
+    .events-empty-state .empty-sub {
+      font-size:var(--text-sm);
+      color:var(--color-grey);
+      line-height:1.6;
+      max-width:400px;
+      margin:0 auto;
+    }
+    .notify-form {
+      display:flex;
+      align-items:center;
+      gap:var(--sp-3);
+      max-width:400px;
+      margin:var(--sp-8) auto 0;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .notify-form .email-input-light {
+      flex:1;
+      min-width:180px;
+      padding:var(--sp-4) var(--sp-6);
+      border-radius:var(--r-pill);
+    }
+
+    /* What's coming heading */
+    .whats-coming-title {
+      font-size:var(--text-xs);
+      font-weight:var(--fw-black);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--color-grey);
+      margin-bottom:var(--sp-6);
+    }
+
+    /* Expect section */
+    .expect-label-wrap {
+      text-align:center;
+      margin-bottom:var(--sp-16);
+    }
+
+    @media (max-width: 768px) {
+      .notify-form {
+        flex-direction:column;
+        align-items:stretch;
+      }
+      .notify-form .email-input-light {
+        min-width:unset;
+        width:100%;
+      }
+    }
+    @media (max-width: 600px) {
+      .notify-form { flex-direction: column; align-items: stretch; }
+      .notify-form .email-input-light { min-width: unset; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="28" height="28" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="16" y="25" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">F</text>
+          <path d="M2 31 Q10 27 16 29 Q22 27 30 31" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span class="nav-logo-word">Foundera</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="about.html"       class="nav-link">Our Story</a></li>
+        <li><a href="what-we-do.html" class="nav-link">What We Do</a></li>
+        <li><a href="events.html"     class="nav-link is-active">Events</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="partners.html"   class="nav-link">Partners</a></li>
+        <li><a href="community.html"  class="nav-link">Community</a></li>
+      </ul>
+      <a href="community.html" class="btn btn-primary">Join the Movement</a>
+      <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="navMobile">
+    <a href="about.html" class="nav-mobile-link">Our Story</a>
+    <a href="what-we-do.html" class="nav-mobile-link">What We Do</a>
+    <a href="events.html" class="nav-mobile-link is-active">Events</a>
+    <a href="resources.html" class="nav-mobile-link">Resources</a>
+    <a href="partners.html" class="nav-mobile-link">Partners</a>
+    <a href="community.html" class="nav-mobile-link">Community</a>
+    <a href="community.html#join" class="btn btn-primary btn-lg nav-mobile-cta">Join the Movement</a>
+  </div>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <p class="label reveal" style="margin-bottom:var(--sp-5)">Upcoming Events</p>
+        <h1 class="page-hero-h1 reveal d1">Show up. Level up.</h1>
+        <p class="page-hero-sub reveal d2">Pitch nights, panels, and workshops. All in Sydney.</p>
+      </div>
+    </section>
+
+    <!-- FILTER PILLS -->
+    <div class="container">
+      <div class="filter-pills reveal">
+        <span class="pill filter-pill pill-active" data-filter="all">All</span>
+        <span class="pill filter-pill" data-filter="founders">Founders</span>
+        <span class="pill filter-pill" data-filter="corporate">Corporate</span>
+        <span class="pill filter-pill" data-filter="schools">Schools</span>
+        <span class="pill filter-pill" data-filter="workshop">Workshop</span>
+      </div>
+    </div>
+
+    <!-- EVENTS LIST -->
+    <section class="section">
+      <div class="container">
+
+        <!-- Empty state -->
+        <div class="events-empty-state reveal">
+          <p class="empty-label">Events Coming Soon</p>
+          <h2 class="empty-headline">We're just getting started.</h2>
+          <p class="empty-sub">Be the first to know when we announce our first pitch night, panel, and workshop.</p>
+          <form class="notify-form" action="#" method="POST">
+            <input
+              class="email-input email-input-light"
+              type="email"
+              name="email"
+              placeholder="your@email.com"
+              aria-label="Email address"
+              required
+            />
+            <button type="submit" class="btn btn-primary">Notify Me</button>
+          </form>
+        </div>
+
+        <!-- What's Coming -->
+        <p class="whats-coming-title reveal">What's Coming</p>
+        <div class="events-list reveal d1">
+
+          <a class="event-row" href="#">
+            <span class="event-date">Coming Soon</span>
+            <span class="event-title">Founder Pitch Night: Sydney</span>
+            <span class="event-location">Sydney, NSW</span>
+            <span class="badge badge-founders">Founders</span>
+            <span class="event-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </a>
+
+          <a class="event-row" href="#">
+            <span class="event-date">Coming Soon</span>
+            <span class="event-title">Career Panel with Industry Leaders</span>
+            <span class="event-location">Sydney, NSW</span>
+            <span class="badge badge-corporate">Corporate</span>
+            <span class="event-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </a>
+
+          <a class="event-row" href="#">
+            <span class="event-date">Coming Soon</span>
+            <span class="event-title">Workshop: Cold Outreach &amp; Sales</span>
+            <span class="event-location">Online</span>
+            <span class="badge badge-workshop">Workshop</span>
+            <span class="event-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider container"></div>
+
+    <!-- WHAT TO EXPECT -->
+    <section class="section" style="border-top:none">
+      <div class="container">
+        <div class="expect-label-wrap reveal">
+          <p class="label" style="margin-bottom:var(--sp-4)">At Our Events</p>
+          <h2 class="headline">What to expect.</h2>
+        </div>
+        <div class="cards-grid">
+
+          <article class="card reveal">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Real People</h3>
+            <p class="card-body">No keynote speakers. Everyone in the room has done something real.</p>
+          </article>
+
+          <article class="card reveal d1">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="3"/>
+                <path d="M9 9h6M9 12h6M9 15h4"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Small Rooms</h3>
+            <p class="card-body">Intimate events. You'll actually talk to people, not sit in a crowd.</p>
+          </article>
+
+          <article class="card reveal d2">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <h3 class="card-title">Follow Through</h3>
+            <p class="card-body">We follow up. Events lead to introductions, mentoring, and opportunities.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EMAIL CTA -->
+    <section class="email-section">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="headline headline-white" style="margin-bottom:var(--sp-5)">Don't miss<br>the first one.</h2>
+          <p class="label label-light" style="letter-spacing:.06em">We'll notify you the moment we announce our first event.</p>
+        </div>
+        <form class="email-form notify-form reveal d1" action="#" method="POST">
+          <input
+            class="email-input"
+            type="email"
+            name="email"
+            placeholder="your@email.com"
+            aria-label="Email address"
+            required
+          />
+          <button type="submit" class="btn btn-outline-white">Notify Me</button>
+        </form>
+        <p class="email-note reveal d2">No spam. Just access.</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="nav-logo" style="margin-bottom:var(--sp-4)">
+            <svg width="22" height="22" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="16" y="25" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">F</text>
+              <path d="M2 31 Q10 27 16 29 Q22 27 30 31" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+              <path d="M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="nav-logo-word" style="font-size:var(--text-base)">Foundera</span>
+          </a>
+          <p class="footer-brand-tagline">Where founders are made.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/foundera.au" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.tiktok.com/@foundera.au" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            <a href="https://www.youtube.com/@foundera" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.linkedin.com/company/founderaau" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="mailto:team@founderaa.com.au" class="footer-social-icon" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Platform</p>
+          <nav class="footer-col-links">
+            <a href="what-we-do.html"      class="footer-link">What We Do</a>
+            <a href="events.html"          class="footer-link">Events</a>
+            <a href="resources.html" class="footer-link">The Access Files</a>
+            <a href="community.html"       class="footer-link">Community</a>
+          </nav>
+        </div>
+        <div>
+          <p class="footer-col-title">Connect</p>
+          <nav class="footer-col-links">
+            <a href="https://www.instagram.com/foundera.au" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+            <a href="https://www.tiktok.com/@foundera.au" target="_blank" rel="noopener noreferrer" class="footer-link">TikTok</a>
+            <a href="https://www.youtube.com/@foundera" target="_blank" rel="noopener noreferrer" class="footer-link">YouTube</a>
+            <a href="https://www.linkedin.com/company/founderaau" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+            <a href="https://www.skool.com" target="_blank" rel="noopener noreferrer" class="footer-link">Skool</a>
+            <a href="partners.html"                               class="footer-link">Partner</a>
+            <a href="partners.html#speak"                         class="footer-link">Speak</a>
+            <a href="mailto:team@founderaa.com.au"                class="footer-link">team@founderaa.com.au</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Foundera. All rights reserved.</p>
+        <div class="footer-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    // Nav hide/show
+    (function(){var nav=document.getElementById('nav'),last=0,tick=false;window.addEventListener('scroll',function(){if(!tick){requestAnimationFrame(function(){var y=window.scrollY;nav.classList.toggle('scrolled',y>10);nav.classList.toggle('hidden',y>last&&y>80);last=y;tick=false;});tick=true;}},{passive:true});})();
+
+    // Reveal
+    (function(){var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -32px 0px'});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});})();
+
+    // Active nav (pathname-based)
+    (function(){var p=location.pathname.split('/').pop();document.querySelectorAll('.nav-link').forEach(function(l){if(l.getAttribute('href')===p)l.classList.add('is-active');});})();
+
+    // Filter pills
+    (function(){
+      var pills=document.querySelectorAll('.filter-pill');
+      pills.forEach(function(pill){pill.addEventListener('click',function(){
+        pills.forEach(function(p){p.classList.remove('pill-active');});
+        pill.classList.add('pill-active');
+      });});
+    })();
+
+    // Email / notify forms
+    (function(){document.querySelectorAll('form.notify-form').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.textContent='Done ✓';b.disabled=true;f.querySelector('input').value='';setTimeout(function(){b.textContent='Notify Me';b.disabled=false;},3000);});});})();
+
+    /* Mobile nav toggle */
+    (function(){
+      var burger = document.getElementById('navBurger');
+      var mobile = document.getElementById('navMobile');
+      if (!burger || !mobile) return;
+      burger.addEventListener('click', function(){
+        var open = mobile.classList.toggle('open');
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      mobile.querySelectorAll('a').forEach(function(a){
+        a.addEventListener('click', function(){
+          mobile.classList.remove('open');
+          burger.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Internship Playbook | Foundera — The complete guide to landing your first internship as a student. From knowing where to look, to standing out in the application, to walking in on day one with a clear plan." />
+  <meta name="theme-color" content="#0A0A0A" />
+  <title>The Internship Playbook | Foundera</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 38' fill='none'%3E%3Ctext x='16' y='25' text-anchor='middle' font-family='Georgia%2Cserif' font-size='26' font-weight='700' fill='%230A0A0A'%3EF%3C%2Ftext%3E%3Cpath d='M2 31 Q10 27 16 29 Q22 27 30 31' stroke='%230A0A0A' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3Cpath d='M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5' stroke='%230A0A0A' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C%2Fsvg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .resource-hero {
+      padding: 140px 0 var(--sp-20);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .resource-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-6);
+      flex-wrap: wrap;
+    }
+    .resource-read-time {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      color: var(--color-grey);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .resource-hero-h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: var(--fw-black);
+      letter-spacing: var(--ls-tightest);
+      line-height: .95;
+      margin-bottom: var(--sp-6);
+    }
+    .resource-hero-sub {
+      font-size: clamp(var(--text-base), 1.8vw, var(--text-xl));
+      font-weight: var(--fw-medium);
+      color: var(--color-grey);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: var(--sp-8);
+    }
+    .resource-intro-note {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      font-weight: var(--fw-medium);
+      max-width: 580px;
+      line-height: 1.8;
+      padding: var(--sp-6) var(--sp-8);
+      border-left: 3px solid var(--color-black);
+      background: var(--color-off-white);
+      border-radius: 0 var(--r-card) var(--r-card) 0;
+    }
+    .resource-intro-note strong { color: var(--color-black); font-weight: var(--fw-bold); }
+
+    /* ── Accordion ── */
+    .acc-wrap { max-width: 800px; margin: 0 auto; }
+    .acc-list { border-top: 1px solid var(--color-border); }
+
+    .acc-item {
+      border-bottom: 1px solid var(--color-border);
+    }
+    .acc-item.acc-open {
+      border-left: 3px solid var(--color-black);
+      padding-left: var(--sp-6);
+      margin-left: calc(-3px - var(--sp-6));
+    }
+
+    .acc-trigger {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-5);
+      padding: var(--sp-8) 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+    }
+    .acc-trigger:hover .acc-title { opacity: .7; }
+
+    .acc-num {
+      font-size: var(--text-2xl);
+      font-weight: var(--fw-black);
+      letter-spacing: -.03em;
+      color: rgba(10,10,10,.12);
+      min-width: 48px;
+      line-height: 1;
+      padding-top: 3px;
+      transition: color .25s ease;
+      flex-shrink: 0;
+    }
+    .acc-trigger[aria-expanded="true"] .acc-num { color: var(--color-black); }
+
+    .acc-title-group { flex: 1; display: flex; flex-direction: column; gap: var(--sp-2); }
+    .acc-title {
+      font-size: clamp(var(--text-base), 2vw, var(--text-xl));
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-tight);
+      color: var(--color-black);
+      line-height: 1.2;
+      transition: opacity .2s ease;
+    }
+    .acc-teaser {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-medium);
+      color: var(--color-grey);
+      line-height: 1.55;
+    }
+    .acc-icon {
+      display: flex; align-items: center;
+      color: var(--color-grey);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+      flex-shrink: 0; margin-top: 3px;
+    }
+    .acc-trigger[aria-expanded="true"] .acc-icon { transform: rotate(180deg); }
+
+    .acc-body { max-height: 0; overflow: hidden; transition: max-height .5s cubic-bezier(.4,0,.2,1); }
+    .acc-body.is-open { max-height: 8000px; }
+
+    .acc-inner { padding: var(--sp-2) 0 var(--sp-12) calc(48px + var(--sp-5)); }
+
+    .acc-inner > p:first-child {
+      font-size: var(--text-base);
+      color: var(--color-black);
+      line-height: 1.8;
+      font-weight: var(--fw-medium);
+      margin-bottom: var(--sp-6);
+    }
+    .acc-inner p {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      line-height: 2.0;
+      margin-bottom: var(--sp-6);
+      font-weight: var(--fw-medium);
+    }
+    .acc-inner p:last-child { margin-bottom: 0; }
+    .acc-inner strong { color: var(--color-black); font-weight: var(--fw-bold); }
+
+    .acc-inner h4 {
+      font-size: var(--text-lg);
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-tight);
+      color: var(--color-black);
+      margin: var(--sp-10) 0 var(--sp-4);
+      padding-bottom: var(--sp-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .acc-inner ul {
+      margin: var(--sp-4) 0 var(--sp-8);
+      display: flex; flex-direction: column; gap: var(--sp-3);
+      list-style: none; padding: 0;
+    }
+    .acc-inner li {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      line-height: 1.8;
+      font-weight: var(--fw-medium);
+      padding-left: var(--sp-5);
+      position: relative;
+    }
+    .acc-inner li::before {
+      content: '—'; position: absolute; left: 0;
+      color: rgba(10,10,10,.28); font-weight: var(--fw-bold);
+    }
+
+    .callout {
+      border-left: 3px solid var(--color-black);
+      background: var(--color-off-white);
+      border-radius: 0 var(--r-card) var(--r-card) 0;
+      padding: var(--sp-6) var(--sp-7);
+      margin: var(--sp-8) 0;
+    }
+    .callout p {
+      font-size: var(--text-sm) !important;
+      color: var(--color-black) !important;
+      font-weight: var(--fw-bold) !important;
+      line-height: 1.65 !important;
+      margin: 0 !important;
+    }
+
+    .tip-list { display: flex; flex-direction: column; gap: var(--sp-5); margin: var(--sp-6) 0; }
+    .tip-item { display: flex; gap: var(--sp-4); align-items: flex-start; }
+    .tip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-black); flex-shrink: 0; margin-top: 8px; }
+    .tip-text { font-size: var(--text-sm); color: var(--color-grey); line-height: 1.8; font-weight: var(--fw-medium); }
+    .tip-text strong { color: var(--color-black); }
+
+    /* Reading progress */
+    .acc-progress-bar {
+      display: flex; align-items: center; gap: var(--sp-4);
+      margin-bottom: var(--sp-10); padding: var(--sp-4) var(--sp-5);
+      background: var(--color-off-white); border-radius: var(--r-sm);
+    }
+    .acc-progress-track { flex: 1; height: 3px; background: var(--color-border); border-radius: 100px; overflow: hidden; }
+    .acc-progress-fill { height: 100%; background: var(--color-black); border-radius: 100px; width: 0%; transition: width .4s cubic-bezier(.4,0,.2,1); }
+    .acc-progress-label { font-size: var(--text-xs); font-weight: var(--fw-bold); color: var(--color-grey); white-space: nowrap; letter-spacing: .05em; }
+
+    .section-intro { padding: var(--sp-16) 0 0; }
+
+    @media (max-width: 768px) {
+      .resource-hero { padding: 120px 0 var(--sp-14); }
+      .acc-inner { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="28" height="28" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="16" y="25" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">F</text>
+          <path d="M2 31 Q10 27 16 29 Q22 27 30 31" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span class="nav-logo-word">Foundera</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="about.html"      class="nav-link">Our Story</a></li>
+        <li><a href="what-we-do.html" class="nav-link">What We Do</a></li>
+        <li><a href="events.html"     class="nav-link">Events</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="partners.html"   class="nav-link">Partners</a></li>
+        <li><a href="community.html"  class="nav-link">Community</a></li>
+      </ul>
+      <a href="community.html" class="btn btn-primary">Join the Movement</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="resource-hero">
+      <div class="container">
+        <div class="resource-meta reveal">
+          <span class="pill">Career</span>
+          <span class="resource-read-time">11 min read</span>
+        </div>
+        <h1 class="resource-hero-h1 reveal d1">The Internship<br>Playbook</h1>
+        <p class="resource-hero-sub reveal d2">Finding it, getting it and making the most of it.</p>
+        <div class="resource-intro-note reveal d3">
+          <strong>Most people spend more time thinking about internships than actually going after one.</strong> This changes that. The complete guide to landing your first internship as a student — from knowing where to look, to standing out in the application, to walking in on day one with a clear plan.
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCORDION -->
+    <section class="section-intro section">
+      <div class="container">
+        <div class="acc-wrap">
+
+          <div class="acc-progress-bar">
+            <div class="acc-progress-track"><div class="acc-progress-fill" id="intProgressFill"></div></div>
+            <span class="acc-progress-label" id="intProgressLabel">0 of 8 sections read</span>
+          </div>
+
+          <div class="acc-list">
+
+            <!-- 01 -->
+            <div class="acc-item acc-open reveal">
+              <button class="acc-trigger" aria-expanded="true" data-acc>
+                <span class="acc-num">01</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Why Internships Change Everything</span>
+                  <span class="acc-teaser">Not just work experience. The single most important thing you can do while still at university.</span>
+                </div>
+                <span class="acc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+              </button>
+              <div class="acc-body is-open" aria-hidden="false">
+                <div class="acc-inner">
+                  <p>An internship is the closest thing to a cheat code in the early career game.</p>
+                  <p>It gives you real experience when everyone else only has theory. It puts your name in front of people who are hiring. It tells you what you actually want to do before you commit to it. And it gives every future application a line of evidence that separates you from the thousands of graduates with the same degree and the same GPA.</p>
+                  <div class="callout">
+                    <p>Start earlier than you think you need to. Most people wait until final year. The people who land the best graduate roles started looking in second year.</p>
+                  </div>
+                  <p>The earlier you start, the more time you have to build on what you learn. One internship makes the next one easier to get. Two internships makes a graduate application almost straightforward. The compounding effect is real, and it starts the moment you decide to stop waiting.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 02 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">02</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Where to Actually Find Internships</span>
+                  <span class="acc-teaser">Seek is not where the best ones are. Here is where they actually live.</span>
+                </div>
+                <span class="acc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>Most students go to Seek, scroll for ten minutes and give up. That approach misses the majority of real opportunities.</p>
+                  <h4>Where internships actually live</h4>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Company websites directly.</strong> Many businesses list internships exclusively on their own careers pages and never push them to job boards. Go to the companies you want to work for and check their site first.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>LinkedIn.</strong> Search "intern" or "internship" plus your city plus your field. Set up alerts so you hear about them the moment they go live.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Your university careers centre.</strong> They have direct partnerships with employers that most students never use. These roles are often less competitive because the pool is smaller.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Cold outreach.</strong> Emailing companies you actually want to work for, even when nothing is listed. This is covered in detail in section 05.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Industry associations and professional bodies.</strong> Many post student opportunities that never appear on mainstream job boards.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Foundera events.</strong> The people in the room are often the ones who can create the opportunity. Showing up, being curious and having a real conversation is more powerful than any application form.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Your network.</strong> Friends, family, parents of friends, former teachers. Tell people you are looking. Most people are happy to help when asked directly.</span></div>
+                  </div>
+                  <div class="callout">
+                    <p>The hidden market: most small-to-medium businesses never post internships publicly but would take one if someone asked. This is where cold outreach becomes genuinely powerful — and why section 05 matters.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 03 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">03</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">How to Write an Application That Gets Read</span>
+                  <span class="acc-teaser">Resume plus cover letter. Most people get both wrong. Here is what actually works.</span>
+                </div>
+                <span class="acc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>The resume and cover letter are doing two different jobs. Getting both right is not complicated — but it does require more thought than most people put in.</p>
+                  <h4>The resume</h4>
+                  <p>Your resume for an internship application should be one page, clean and ATS-safe. Tailor every application — match your bullet points to the language in the role description. If they say "client communication", use that phrase. If they say "data analysis", make sure that phrase appears somewhere relevant in your resume.</p>
+                  <ul>
+                    <li>One page. No exceptions at this stage of your career.</li>
+                    <li>Lead with education, then experience, then skills and activities.</li>
+                    <li>Write achievement-oriented bullet points, not task descriptions. "Managed social media accounts" tells them nothing. "Grew Instagram following by 40% over three months through a weekly content strategy" tells them something real.</li>
+                    <li>Avoid dense formatting, tables, text boxes and graphics. ATS systems cannot read them.</li>
+                  </ul>
+                  <h4>The cover letter</h4>
+                  <p>The cover letter is where you actually talk like a person. Three short paragraphs: why this company (be specific, show you researched them), what you bring (evidence, not claims), and one line on what you want to learn.</p>
+                  <div class="callout">
+                    <p>Do not start your cover letter with "I am writing to apply for the position of..." — open with something that shows you thought about it. A strong opener: "The work [Company] is doing in [specific area] is exactly the kind of environment I want to learn in. Here is why I think I can contribute."</p>
+                  </div>
+                  <p>Address it to a real person where possible. LinkedIn makes this easier than it used to be. Check the company page, look at who manages the team, and use their name. It takes three minutes and most applicants do not bother.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 04 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">04</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">The Interview: What They Are Actually Testing</span>
+                  <span class="acc-teaser">They are not testing whether you know things. They are testing whether you are someone they want to work with.</span>
+                </div>
+                <span class="acc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>Most intern interviews are competency based. That means "tell me about a time when..." questions. Prepare four or five strong examples from university, clubs, part-time work, sport — whatever you have.</p>
+                  <h4>How to structure your answers</h4>
+                  <p>The STAR format works: <strong>Situation, Task, Action, Result.</strong> Keep the Situation and Task brief. Spend most of your answer on what you actually did and what happened. That is the part they care about.</p>
+                  <p>Each example should ideally end with what you took from it. That is what separates a story from a demonstration of maturity.</p>
+                  <h4>What else they are watching</h4>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Curiosity.</strong> Do you seem genuinely interested in what the company does? Did you do any research beyond the about page?</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Questions.</strong> Always have two ready. Not "what are the hours?" — something that shows you thought about the role. "What does success look like for someone in this role in the first few months?" is a strong one.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Honesty when you do not know something.</strong> "I have not come across that yet, but here is how I would approach it" is better than bluffing. Interviewers can always tell.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>The follow-up.</strong> Send a short thank you email within 24 hours. Not everyone does this. It matters more than people realise.</span></div>
+                  </div>
+                  <div class="callout">
+                    <p>The most common reason people fail interviews is not getting a question wrong. It is giving safe, generic, forgettable answers. Be specific. Show you have thought about things, not just prepared answers for them.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 05 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">05</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Cold Outreach: How to Ask for Something That Is Not Listed</span>
+                  <span class="acc-teaser">The best internships never get posted. Here is how to get them anyway.</span>
+                </div>
+                <span class="acc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>Most people wait for a role to be listed before they reach out. That is the wrong order. The best opportunities go to people who ask before anything is posted.</p>
+                  <h4>How to do it</h4>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Identify five to ten companies you genuinely want to work for.</strong> Not a hundred. Five to ten that you have actually thought about and where you can write something specific.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Find the right person on LinkedIn.</strong> Usually a manager, team lead or someone in the team you want to be in. Not always HR — often the people closest to the work are more receptive.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Send a short, direct message.</strong> Do not paste your resume in the first message. Just introduce yourself, say what you are studying, say what draws you to their company specifically and ask if they would be open to a conversation or if they ever take on interns.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Follow up once after a week if no reply. Once only.</strong> Most people will not reply. That is fine. Some will. One yes changes things.</span></div>
+                  </div>
+                  <div class="callout">
+                    <p>Example message: "Hi [Name], I am a second year Commerce student at UNSW with a strong interest in [their field]. I have been following [Company] for a while and the work you do in [specific area] is exactly where I want to build experience. I know you may not have anything listed, but I wanted to reach out and ask whether you ever bring on interns or if you would be open to a brief conversation. Happy to share more about my background if that helps."</p>
+                  </div>
+                  <p>Keep it short. Keep it specific. Make it easy for them to say yes to a conversation rather than committing to anything. The goal of the first message is a reply, not an internship.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 06 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">06</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Paid vs Unpaid: What to Know</span>
+                  <span class="acc-teaser">The rules, the tradeoffs, and what actually matters when you are weighing up an opportunity.</span>
+                </div>
+                <span class="acc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>The paid versus unpaid question comes up constantly. Here is what actually matters.</p>
+                  <h4>Know your rights in Australia</h4>
+                  <p>In Australia, unpaid internships in for-profit companies are legally murky and increasingly rare for good reason. Most structured internship programs at medium to large companies are paid at least at minimum wage. Short-term unpaid arrangements, such as a week of work experience or observational placements, are more common and legally clearer.</p>
+                  <p>Do not do free work for a company that should be paying you. Know the difference between genuine development opportunities and being exploited.</p>
+                  <h4>What to actually weigh up</h4>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Are you learning real things?</strong> Not making coffees and filing documents — doing actual work that builds real skills.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Are you in a real team?</strong> Being embedded in a functioning team is worth far more than sitting in a corner on your own.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Is there a person invested in your development?</strong> A good manager who gives you real feedback will do more for your career than a prestigious company name where nobody notices you.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Will it be meaningful on a resume?</strong> A week at a firm that could lead to a paid role or a strong reference is worth considering even if it is unpaid. Context matters.</span></div>
+                  </div>
+                  <div class="callout">
+                    <p>Do not automatically dismiss a short or unpaid opportunity if it is genuinely valuable. And do not automatically accept a paid role if you will learn nothing and meet no one. The currency that matters most at this stage is experience and relationships, not the hourly rate.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 07 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">07</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Making the Most of It Once You Are In</span>
+                  <span class="acc-teaser">Getting the internship is step one. What you do with it is what actually counts.</span>
+                </div>
+                <span class="acc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>The internship itself is where most of the value is created — or wasted. Most interns get this wrong not through bad intentions but through passivity.</p>
+                  <h4>In the first week</h4>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Show up early, stay a little late.</strong> Not every day for the whole internship — just in the first week. It signals investment without being performative.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Learn everyone's name and what they do.</strong> Not just your manager. The people around you are the ones who will remember you.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Bring a notepad. Write things down. Do not ask the same question twice.</strong> This one action signals more competence than almost anything else.</span></div>
+                  </div>
+                  <h4>Throughout the internship</h4>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Do what you are asked, then ask what else you can help with.</strong> The interns who get return offers are almost always the ones who proactively looked for ways to be useful.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Find out if there is a graduate or return intern program — and ask early how that process works.</strong> Do not leave this question until the last week.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Ask for feedback at the halfway point, not at the end.</strong> You want time to actually act on it. "Is there anything I could be doing differently?" is a question that most interns never ask.</span></div>
+                  </div>
+                  <h4>At the end</h4>
+                  <p>Ask your manager directly: "Is there anything I could have done better?" And then ask if they would be comfortable being a professional reference. Send a genuine thank you to everyone you worked closely with. Not a generic email — something specific to what you learned from them. This takes fifteen minutes and almost no one does it.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 08 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">08</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Building on It: What Comes After</span>
+                  <span class="acc-teaser">The internship is not the destination. It is the foundation.</span>
+                </div>
+                <span class="acc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>The week after an internship ends is one of the most important weeks in your early career. Most people do nothing with it.</p>
+                  <h4>The immediate actions</h4>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Update your resume and LinkedIn the week you finish,</strong> while everything is fresh. Write down specific projects, outcomes and numbers before you forget them. This detail becomes gold on future applications.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Connect with everyone you worked with on LinkedIn</strong> and send a short personalised note — not the default connection request. Something specific to what you worked on together.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>If you received a return offer, think carefully before saying yes or no.</strong> Both are valid decisions. But decide quickly. Leaving a company waiting reflects poorly.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>If you did not receive a return offer, ask why,</strong> directly but professionally. The feedback is valuable. It is not personal.</span></div>
+                  </div>
+                  <h4>The longer game</h4>
+                  <p>One internship makes the next one easier to get. Now you have evidence. Use it. The relationships you built do not expire when the internship ends. Stay in touch, comment on their posts, check in occasionally. These people may be your future references, hiring managers or collaborators.</p>
+                  <div class="callout">
+                    <p>Keep track of what you achieved during the internship with specifics — numbers, projects, outcomes. A year from now, those details will have faded. Write them down now while they are real.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /acc-list -->
+        </div><!-- /acc-wrap -->
+      </div>
+    </section>
+
+    <!-- BACK + NEXT -->
+    <section class="section">
+      <div class="container">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-5); padding-top:var(--sp-8); border-top:1px solid var(--color-border)">
+          <a href="resources.html" style="font-size:var(--text-sm); font-weight:var(--fw-bold); color:var(--color-grey); text-decoration:none; display:flex; align-items:center; gap:var(--sp-2);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to The Vault
+          </a>
+          <a href="resource-networking.html" class="btn btn-outline">Read: How to Get the Interview Before It's Posted &nbsp;→</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="email-section">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="headline headline-white" style="margin-bottom:var(--sp-5)">Want more of this?</h2>
+          <p class="label label-light" style="letter-spacing:.06em">Join the community. Get every playbook, every event, every insight.</p>
+        </div>
+        <div class="reveal d1" style="margin-top:var(--sp-10); display:flex; gap:var(--sp-4); justify-content:center; flex-wrap:wrap;">
+          <a href="community.html" class="btn btn-outline-white btn-lg">Join the Community</a>
+          <a href="resources.html" class="btn btn-outline-white btn-lg">More Playbooks</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="nav-logo" style="margin-bottom:var(--sp-4)">
+            <svg width="22" height="22" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="16" y="25" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">F</text>
+              <path d="M2 31 Q10 27 16 29 Q22 27 30 31" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+              <path d="M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="nav-logo-word" style="font-size:var(--text-base)">Foundera</span>
+          </a>
+          <p class="footer-brand-tagline">Where founders are made.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/foundera.au" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.tiktok.com/@foundera.au" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            <a href="https://www.linkedin.com/company/founderaau" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="mailto:team@founderaa.com.au" class="footer-social-icon" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Platform</p>
+          <nav class="footer-col-links">
+            <a href="what-we-do.html" class="footer-link">What We Do</a>
+            <a href="events.html"     class="footer-link">Events</a>
+            <a href="resources.html" class="footer-link">The Access Files</a>
+            <a href="community.html"  class="footer-link">Community</a>
+          </nav>
+        </div>
+        <div>
+          <p class="footer-col-title">Connect</p>
+          <nav class="footer-col-links">
+            <a href="https://www.instagram.com/foundera.au" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+            <a href="https://www.tiktok.com/@foundera.au" target="_blank" rel="noopener noreferrer" class="footer-link">TikTok</a>
+            <a href="https://www.linkedin.com/company/founderaau" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+            <a href="partners.html"  class="footer-link">Become a Partner</a>
+            <a href="partners.html#speak" class="footer-link">Speak at an Event</a>
+            <a href="mailto:team@founderaa.com.au" class="footer-link">Contact</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Foundera. All rights reserved.</p>
+        <div class="footer-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    (function(){var nav=document.getElementById('nav'),last=0,tick=false;window.addEventListener('scroll',function(){if(!tick){requestAnimationFrame(function(){var y=window.scrollY;nav.classList.toggle('scrolled',y>10);nav.classList.toggle('hidden',y>last&&y>80);last=y;tick=false;});tick=true;}},{passive:true});})();
+    (function(){var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -32px 0px'});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});})();
+    (function(){
+      var btns=document.querySelectorAll('[data-acc]');
+      var fill=document.getElementById('intProgressFill');
+      var label=document.getElementById('intProgressLabel');
+      var total=btns.length, read={};
+      if(btns[0]) read[0]=true;
+      function updateProgress(){
+        var done=Object.keys(read).length;
+        var pct=Math.round((done/total)*100);
+        if(fill) fill.style.width=pct+'%';
+        if(label) label.textContent=done+' of '+total+' sections read';
+      }
+      updateProgress();
+      btns.forEach(function(btn,idx){
+        btn.addEventListener('click',function(){
+          var expanded=btn.getAttribute('aria-expanded')==='true';
+          var body=btn.nextElementSibling;
+          var item=btn.closest('.acc-item');
+          btn.setAttribute('aria-expanded',String(!expanded));
+          body.classList.toggle('is-open',!expanded);
+          body.setAttribute('aria-hidden',String(expanded));
+          item.classList.toggle('acc-open',!expanded);
+          if(!expanded){read[idx]=true;updateProgress();}
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

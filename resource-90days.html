@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your First 90 Days in a Corporate Role | Foundera — How to earn trust fast, avoid the early mistakes, and position yourself before most people have settled in." />
+  <meta name="theme-color" content="#0A0A0A" />
+  <title>Your First 90 Days | Foundera</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 38' fill='none'%3E%3Ctext x='16' y='25' text-anchor='middle' font-family='Georgia%2Cserif' font-size='26' font-weight='700' fill='%230A0A0A'%3EF%3C%2Ftext%3E%3Cpath d='M2 31 Q10 27 16 29 Q22 27 30 31' stroke='%230A0A0A' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3Cpath d='M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5' stroke='%230A0A0A' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C%2Fsvg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .resource-hero {
+      padding: 140px 0 var(--sp-20);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .resource-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-6);
+      flex-wrap: wrap;
+    }
+    .resource-read-time {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      color: var(--color-grey);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .resource-hero-h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: var(--fw-black);
+      letter-spacing: var(--ls-tightest);
+      line-height: .95;
+      margin-bottom: var(--sp-6);
+    }
+    .resource-hero-sub {
+      font-size: clamp(var(--text-base), 1.8vw, var(--text-xl));
+      font-weight: var(--fw-medium);
+      color: var(--color-grey);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: var(--sp-8);
+    }
+    .resource-intro-note {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      font-weight: var(--fw-medium);
+      max-width: 580px;
+      line-height: 1.8;
+      padding: var(--sp-6) var(--sp-8);
+      border-left: 3px solid var(--color-black);
+      background: var(--color-off-white);
+      border-radius: 0 var(--r-card) var(--r-card) 0;
+    }
+    .resource-intro-note strong { color: var(--color-black); font-weight: var(--fw-bold); }
+
+    /* ── Accordion: redesigned for clarity and breathing room ── */
+    .acc-wrap { max-width: 800px; margin: 0 auto; }
+    .acc-list { border-top: 1px solid var(--color-border); }
+
+    .acc-item {
+      border-bottom: 1px solid var(--color-border);
+      transition: border-left-color .25s ease, padding-left .25s ease;
+    }
+    .acc-item.acc-open {
+      border-left: 3px solid var(--color-black);
+      padding-left: var(--sp-6);
+      margin-left: calc(-3px - var(--sp-6));
+    }
+
+    .acc-trigger {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-5);
+      padding: var(--sp-8) 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+    }
+    .acc-trigger:hover .acc-title { opacity: .7; }
+
+    .acc-num {
+      font-size: var(--text-2xl);
+      font-weight: var(--fw-black);
+      letter-spacing: -.03em;
+      color: rgba(10,10,10,.12);
+      min-width: 48px;
+      line-height: 1;
+      padding-top: 3px;
+      transition: color .25s ease;
+      flex-shrink: 0;
+    }
+    .acc-trigger[aria-expanded="true"] .acc-num { color: var(--color-black); }
+
+    .acc-title-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+    .acc-title {
+      font-size: clamp(var(--text-base), 2vw, var(--text-xl));
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-tight);
+      color: var(--color-black);
+      line-height: 1.2;
+      transition: opacity .2s ease;
+    }
+    .acc-teaser {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-medium);
+      color: var(--color-grey);
+      line-height: 1.55;
+      letter-spacing: .01em;
+    }
+
+    .acc-icon {
+      display: flex;
+      align-items: center;
+      color: var(--color-grey);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .acc-trigger[aria-expanded="true"] .acc-icon { transform: rotate(180deg); }
+
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .5s cubic-bezier(.4,0,.2,1);
+    }
+    .acc-body.is-open { max-height: 8000px; }
+
+    .acc-inner {
+      padding: var(--sp-2) 0 var(--sp-12) calc(48px + var(--sp-5));
+    }
+    .acc-inner > p:first-child {
+      font-size: var(--text-base);
+      color: var(--color-black);
+      line-height: 1.8;
+      font-weight: var(--fw-medium);
+      margin-bottom: var(--sp-6);
+    }
+    .acc-inner p {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      line-height: 2.0;
+      margin-bottom: var(--sp-6);
+      font-weight: var(--fw-medium);
+    }
+    .acc-inner p:last-child { margin-bottom: 0; }
+    .acc-inner strong { color: var(--color-black); font-weight: var(--fw-bold); }
+
+    .acc-inner h4 {
+      font-size: var(--text-lg);
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-tight);
+      color: var(--color-black);
+      margin: var(--sp-10) 0 var(--sp-4);
+      padding-bottom: var(--sp-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .acc-inner ul {
+      margin: var(--sp-4) 0 var(--sp-8);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      list-style: none;
+      padding: 0;
+    }
+    .acc-inner li {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      line-height: 1.8;
+      font-weight: var(--fw-medium);
+      padding-left: var(--sp-5);
+      position: relative;
+    }
+    .acc-inner li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(10,10,10,.28);
+      font-weight: var(--fw-bold);
+    }
+
+    .callout {
+      border-left: 3px solid var(--color-black);
+      background: var(--color-off-white);
+      border-radius: 0 var(--r-card) var(--r-card) 0;
+      padding: var(--sp-6) var(--sp-7);
+      margin: var(--sp-8) 0;
+    }
+    .callout p {
+      font-size: var(--text-sm) !important;
+      color: var(--color-black) !important;
+      font-weight: var(--fw-bold) !important;
+      line-height: 1.65 !important;
+      margin: 0 !important;
+    }
+
+    .tip-list { display: flex; flex-direction: column; gap: var(--sp-5); margin: var(--sp-6) 0; }
+    .tip-item { display: flex; gap: var(--sp-4); align-items: flex-start; }
+    .tip-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--color-black);
+      flex-shrink: 0; margin-top: 8px;
+    }
+    .tip-text {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      line-height: 1.8;
+      font-weight: var(--fw-medium);
+    }
+    .tip-text strong { color: var(--color-black); }
+
+    /* Reading progress bar */
+    .acc-progress-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-10);
+      padding: var(--sp-4) var(--sp-5);
+      background: var(--color-off-white);
+      border-radius: var(--r-sm);
+    }
+    .acc-progress-track {
+      flex: 1;
+      height: 3px;
+      background: var(--color-border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .acc-progress-fill {
+      height: 100%;
+      background: var(--color-black);
+      border-radius: 100px;
+      width: 0%;
+      transition: width .4s cubic-bezier(.4,0,.2,1);
+    }
+    .acc-progress-label {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      color: var(--color-grey);
+      white-space: nowrap;
+      letter-spacing: .05em;
+    }
+
+    /* Interactive checklist */
+    .checklist { display: flex; flex-direction: column; gap: var(--sp-3); margin: var(--sp-5) 0; }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-3);
+      cursor: pointer;
+      padding: var(--sp-3) var(--sp-4);
+      border-radius: 10px;
+      border: 1px solid var(--color-border);
+      transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
+      background: var(--color-white);
+    }
+    .check-item:hover { border-color: rgba(10,10,10,.2); }
+    .check-item.checked { background: var(--color-off-white); border-color: var(--color-black); }
+    .check-box {
+      width: 18px; height: 18px;
+      border: 2px solid var(--color-border);
+      border-radius: 5px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
+    }
+    .check-item.checked .check-box {
+      background: var(--color-black);
+      border-color: var(--color-black);
+    }
+    .check-tick {
+      opacity: 0;
+      transition: opacity .15s ease;
+    }
+    .check-item.checked .check-tick { opacity: 1; }
+    .check-label {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      line-height: 1.55;
+      font-weight: var(--fw-medium);
+      transition: color var(--dur-base) var(--ease-out);
+    }
+    .check-item.checked .check-label {
+      color: var(--color-black);
+      text-decoration: line-through;
+      text-decoration-color: rgba(10,10,10,.3);
+    }
+    .checklist-group-title {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-black);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      margin: var(--sp-6) 0 var(--sp-3);
+    }
+    .checklist-group-title:first-child { margin-top: 0; }
+
+    .progress-bar-wrap {
+      background: var(--color-border);
+      border-radius: 100px;
+      height: 4px;
+      margin: var(--sp-5) 0 var(--sp-3);
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--color-black);
+      border-radius: 100px;
+      width: 0%;
+      transition: width .35s cubic-bezier(.4,0,.2,1);
+    }
+    .progress-label {
+      font-size: var(--text-xs);
+      color: var(--color-grey);
+      font-weight: var(--fw-bold);
+      letter-spacing: .08em;
+    }
+
+    .section-intro { padding: var(--sp-16) 0 0; }
+    @media (max-width: 768px) {
+      .resource-hero { padding: 120px 0 var(--sp-14); }
+      .acc-inner { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="28" height="28" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="16" y="25" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">F</text>
+          <path d="M2 31 Q10 27 16 29 Q22 27 30 31" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span class="nav-logo-word">Foundera</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="about.html"      class="nav-link">Our Story</a></li>
+        <li><a href="what-we-do.html" class="nav-link">What We Do</a></li>
+        <li><a href="events.html"     class="nav-link">Events</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="partners.html"   class="nav-link">Partners</a></li>
+        <li><a href="community.html"  class="nav-link">Community</a></li>
+      </ul>
+      <a href="community.html" class="btn btn-primary">Join the Movement</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="resource-hero">
+      <div class="container">
+        <div class="resource-meta reveal">
+          <span class="pill">The Access Files</span>
+          <span class="resource-read-time">12 min read</span>
+        </div>
+        <h1 class="resource-hero-h1 reveal d1">Your First 90 Days<br>in a Corporate Role</h1>
+        <p class="resource-hero-sub reveal d2">What to do in the first three months of your first real job. How to earn trust fast, avoid the mistakes that actually cost people, and position yourself for what is next before most people have even settled in.</p>
+        <div class="resource-intro-note reveal d3">
+          <strong>Most people walk into their first real job trying to prove how much they know. That is the wrong move.</strong> The people who earn trust fast, get assigned the interesting work and get remembered at review time are almost never the loudest voices in the first few weeks. They are the ones who figured out the room before they tried to change it. This guide shows you how.
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCORDION -->
+    <section class="section-intro section">
+      <div class="container">
+        <div class="acc-wrap">
+
+          <!-- Reading progress -->
+          <div class="acc-progress-bar">
+            <div class="acc-progress-track"><div class="acc-progress-fill" id="daysProgressFill"></div></div>
+            <span class="acc-progress-label" id="daysProgressLabel">0 of 7 sections read</span>
+          </div>
+
+          <div class="acc-list">
+
+            <!-- 01 -->
+            <div class="acc-item acc-open reveal">
+              <button class="acc-trigger" aria-expanded="true" data-acc>
+                <span class="acc-num">01</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">The Truth About Day One</span>
+                  <span class="acc-teaser">Day one is not about performing. What to actually do in your first eight hours — and what to avoid.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body is-open" aria-hidden="false">
+                <div class="acc-inner">
+                  <p>Day one is not about performing. It is about paying attention.</p>
+                  <p>Nobody expects you to know everything. What they do expect is that you show up on time, introduce yourself without being awkward about it, and listen more than you speak. Sounds simple. Most people get it wrong because they are too busy trying to seem impressive.</p>
+                  <h4>Understanding what this role actually is</h4>
+                  <p>Most internships are three months. This is not a trial run. It is the run. Companies use this period to decide if they want to offer you a graduate or return role. The people who get return offers are not necessarily the smartest in the room. They are the ones who showed up every day like it mattered. Treat every day of those three months as an audition for the role you actually want.</p>
+                  <h4>What to actually do on day one</h4>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text">Learn the names of the people around you. Not just your manager. Everyone in your orbit.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text">Find out who the informal leaders are. Every team has someone who is not the boss but who everyone actually listens to.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text">Notice the communication style. Is everything on email? Slack? Do people pop in for a chat or is everything calendared? Match that.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text">Ask one smart question in your first meeting. One. Not five. Not zero.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text">Do not bring your whole personality on day one. Read the room first, then let it out gradually.</span></div>
+                  </div>
+                  <h4>What to avoid</h4>
+                  <ul>
+                    <li>Telling people how your last internship or uni did things differently</li>
+                    <li>Over-explaining yourself or your background unprompted</li>
+                    <li>Staying completely silent all day (this reads as disinterest, not humility)</li>
+                  </ul>
+                  <h4>Know who is who before you speak to them</h4>
+                  <p>On one of your first days, ask someone — your manager, a buddy, or HR — if there is an updated team directory or photo board. Something that shows everyone's name, face and title in your team or service line. Many firms have these on their intranet. This is not about being nosy. It is about knowing who is who before you accidentally introduce yourself to the Managing Director like he is a graduate analyst.</p>
+                  <div class="callout">
+                    <p>Your first impression is set by the end of week one, not day one. How you handle the small moments across the first five days matters more than any single grand gesture.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 02 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">02</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Days 1 to 30: The Listening Phase</span>
+                  <span class="acc-teaser">The most underrated phase of any new role. You cannot solve problems you do not understand yet — here is how to use this time.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>The first month is not about showing what you can do. It is about understanding the landscape you are operating in.</p>
+                  <p>This is the most underrated phase of any new role. Most people rush through it because they feel like they are not contributing. They are wrong. You cannot solve problems you do not understand yet.</p>
+                  <h4>Learn the actual power structure, not just the org chart</h4>
+                  <p>The org chart tells you who has the title. The real map tells you who has influence, who people go to when things go wrong, and who the gatekeepers are. Figure this out by watching who gets cc'd on important emails, who speaks up in meetings and actually gets heard, and who your manager checks in with before making key decisions.</p>
+                  <h4>Understand the politics without getting involved in them</h4>
+                  <p>Every workplace has existing tensions, historical grievances and unwritten rules. You will start picking these up in the first week. Do not take sides. Do not become a confidant for someone's frustration about a colleague. Just listen and note. Your moment to have opinions will come later, when you have enough context to have useful ones.</p>
+                  <h4>Deliver what you are asked to deliver, on time, with no drama</h4>
+                  <p>Your number one job in month one is to be reliable. Not impressive. Not innovative. Just reliable. If you say you will have something done by Thursday, it is done by Thursday. If you run into a problem, flag it early. This is how trust begins to build.</p>
+                  <h4>Ask good questions, not just any questions</h4>
+                  <p>There is a difference between asking questions that show you are engaged and asking questions that show you did not try. Before asking someone, ask yourself: could I find this out in five minutes by checking the shared drive, reading the onboarding docs, or just thinking harder? If yes, go do that first.</p>
+                  <div class="callout">
+                    <p>A script that works: "I was looking at X and noticed Y. My thinking was Z but I wanted to check with you before I assumed." This shows you tried, you thought about it, and you respect their time.</p>
+                  </div>
+                  <h4>Try first, then ask</h4>
+                  <p>Before going to your manager with a question, spend ten minutes trying to figure it out yourself. Check the shared drive, read the documentation, search the company intranet. Show that you can problem solve.</p>
+                  <p>But — if something looks wrong or you are about to take a significant action, call it out. Do not silently do something wrong because you did not want to ask. Ask the question, get the right answer, then do it correctly from the start. Doing it wrong and having to redo it costs everyone more time than the question would have.</p>
+                  <h4>End of month one checkpoint</h4>
+                  <ul>
+                    <li>Can you explain what your team actually does in one clear sentence?</li>
+                    <li>Do you know who the decision makers are for the work you are doing?</li>
+                    <li>Have you delivered at least one thing on time without being followed up on?</li>
+                    <li>Do you know the names and roles of everyone you interact with regularly?</li>
+                  </ul>
+                  <p>Yes to all four means you are tracking well.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 03 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">03</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Days 31 to 60: Building Credibility</span>
+                  <span class="acc-teaser">Credibility is not built in one big moment. It is the accumulation of small reliable moments people start to associate with your name.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>By month two, you should know the terrain. Now it is time to make your presence felt, but strategically. Credibility is not built through one big moment. It is the accumulation of small reliable moments that people start to associate with your name.</p>
+                  <h4>Over-deliver, not over-promise</h4>
+                  <p>The instinct when you start to feel comfortable is to raise your hand for everything. That can work against you if you overcommit. Instead, take on what you are given and deliver it at 110 percent. Add the one extra thing they did not ask for but that makes the work genuinely better. Do not announce you are doing this. Let them notice.</p>
+                  <h4>Show you want more work</h4>
+                  <p>Do not sit at your desk waiting for someone to hand you a task. When you finish something, go back to your manager and ask what else you can help with. Volunteer for things. Show that you want to be in the room and want to take on responsibility.</p>
+                  <p>The graduates who get noticed are not the ones who did exactly what was asked. They are the ones who finished what was asked and then did more. Do not be the person doom scrolling in the corner of the office waiting for lunch.</p>
+                  <h4>Make yourself useful cross-functionally</h4>
+                  <p>Introduce yourself to people outside your immediate team. Not to network in a performative way, but because understanding how other parts of the business work makes you more valuable. It also means when something touches multiple teams, you are the person who already has a relationship with the right person over there.</p>
+                  <p>How to do this without being awkward: ask your manager if there is anyone they suggest you connect with to understand the broader context of the work. Professional and genuinely useful.</p>
+                  <h4>Lunch matters more than you think</h4>
+                  <p>Make the effort to have lunch with your team when you can. Not every day, but regularly. The conversations that happen over lunch are not about work, and that is exactly the point. Knowing your colleagues as people, not just names on an email chain, changes how they see you and how you see them.</p>
+                  <p>It is one of the simplest ways to separate yourself from the person who arrives, sits down, eats at their desk and leaves.</p>
+                  <h4>Identify a problem and mention it once, with a solution</h4>
+                  <p>By month two you will start to see things that could work better. Pick one small thing. Bring it up when appropriate, and bring a suggestion alongside it. Do not frame it as a criticism. Frame it as something you noticed and an idea you wanted to share.</p>
+                  <div class="callout">
+                    <p>The script: "I was working on [X] and noticed that [Y] slows things down. I had a thought that [Z] might help. Would that be worth exploring?" Do this once. See how it lands.</p>
+                  </div>
+                  <h4>Start keeping a record of what you are working on</h4>
+                  <p>Open a simple document and start logging your contributions. What did you work on? What did you deliver? What feedback did you get? What did you learn? This becomes your ammunition at performance review time and your reminder of how much you have actually done when imposter syndrome kicks in.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 04 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">04</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Days 61 to 90: Positioning for What Is Next</span>
+                  <span class="acc-teaser">You are now trusted. Month three is where you stop settling in and start thinking about the long game.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>If you followed the first two months well, you are now trusted. People know your name for good reasons. You are on the radar. Month three is where you start thinking about the long game.</p>
+                  <h4>Have the development conversation</h4>
+                  <p>Before the end of your first 90 days, find a natural moment to have a conversation with your manager about where you are headed. It does not need to be formal. Something like: "I feel like I am starting to find my feet. I am keen to understand what growth looks like from here and what I should be working towards."</p>
+                  <p>This does two things. It signals ambition in a way that is professional and grounded, not pushy. And it opens the door for your manager to tell you what they actually value and what the path forward looks like.</p>
+                  <div class="callout">
+                    <p>Most people wait until their six-month review to have this conversation. Do not wait. The people who move fastest in their early career are the ones who make their intentions clear early, then back it up with the work.</p>
+                  </div>
+                  <h4>Identify your strongest advocate</h4>
+                  <p>By 90 days you will know who in the organisation has noticed you and respects your work. That person is your advocate. They are the one who will mention your name in rooms you are not in.</p>
+                  <p>Make sure they know what you are working on and what you are capable of. Not by telling them directly, but by ensuring your best work is visible to them. Send a thoughtful summary when a project they care about wraps up. Ask for their perspective on something you are working through. Keep the connection alive.</p>
+                  <h4>Do not stop what got you here</h4>
+                  <p>The trap in month three is that you start to relax. The early energy fades. The people who separate themselves at this stage maintain the discipline that built their reputation while also starting to show more of their thinking. Still deliver on time. Still listen before you speak. Now just add: have a point of view. Start to show that you think.</p>
+                  <h4>Start every morning with a list</h4>
+                  <p>Before you open your emails, write down the three to five things you need to get done today. Not a wish list. A real list of what actually needs to happen. Know what your priorities are before the day gets loud. It takes two minutes and it changes how you operate.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 05 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">05</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">How to Earn Trust Faster Than Anyone Expects</span>
+                  <span class="acc-teaser">Trust is not built through big moments. Three things that the fastest trust-builders in any organisation have in common.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>Trust is not built through big moments. It is built through patterns. The fastest trust-builders share three things in common.</p>
+                  <h4>They do what they say they will do, every time</h4>
+                  <p>This sounds obvious. Most people do not actually do it consistently. They say they will have something done by Wednesday and it arrives Thursday morning with an apology. If you are not sure you can hit a deadline, push back on the deadline before you miss it, not after. Saying "I want to make sure I do this well, can I have until Thursday?" is far better than silence followed by a late delivery.</p>
+                  <h4>They make the people around them look good</h4>
+                  <p>When you help a colleague finish something difficult, when you flag a mistake before it becomes public, when you share credit for a good outcome, people notice. You start to be seen as someone who is on the team, not just on the team to advance yourself. That reputation is genuinely rare.</p>
+                  <h4>They are honest about what they do not know</h4>
+                  <p>Early in a career, people try to pretend they know things they do not. This always backfires. The more credible move is to say "I am not across that yet. Let me look into it and come back to you." Then come back. This builds a reputation for honesty and reliability that is genuinely valuable and surprisingly uncommon.</p>
+                  <p>One more thing. Everyone in that office has been exactly where you are. The partner, the director, the senior associate who seems like they were born knowing how to do this. They were not. They were nervous on day one too. They made mistakes. They asked questions they thought were stupid. You are not the first and you will not be the last. This should not make you complacent. It should make you comfortable enough to actually ask.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 06 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">06</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">The Mistakes That Cost People Early</span>
+                  <span class="acc-teaser">Not the obvious ones. The quiet behaviours that nobody warns you about but that quietly define your reputation in the first 90 days.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>Not the obvious ones. These are the ones nobody warns you about.</p>
+                  <h4>Being too agreeable in meetings</h4>
+                  <p>If you agree with everything said and never add anything, people start to think you have nothing to contribute. You do not need to disagree or push back. You just need to contribute something. A question. An observation. A clarifying point. Show that you are present and thinking, not just occupying a chair.</p>
+                  <h4>Only talking to the people in your immediate team</h4>
+                  <p>Your career in any organisation is shaped by how many people know your name for good reasons. If you only exist within your team, you only matter within your team. Expand your circle slowly and naturally, not in a forced networking kind of way.</p>
+                  <h4>Treating admin and logistics as beneath you</h4>
+                  <p>Graduates who come in thinking the administrative side of work is below them are a red flag to experienced professionals. Knowing how the systems work, how things get approved, how the operational side functions, makes you more effective and more respected. Nobody respects someone who does not know how to book a meeting properly.</p>
+                  <h4>Venting about the job in the first 90 days</h4>
+                  <p>To anyone. Including friends at the company, or people outside it who might share what you said. You do not have enough context yet to know what is worth complaining about. And the wrong complaint to the wrong person can define you in ways that are very hard to undo.</p>
+                  <h4>Not asking for feedback until the formal review</h4>
+                  <p>Do not wait. After you deliver something, ask: "Is there anything I could have done differently on this?" After a meeting: "Was that the right level of detail?" These micro-feedback moments help you adjust in real time and signal that you care about doing the work well.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 07 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">07</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Your 90 Day Tracker</span>
+                  <span class="acc-teaser">Twenty-five checkboxes across four phases. Tick them off as you go — your progress saves automatically in your browser.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>Tick these off as you go. Your progress saves automatically.</p>
+                  <div class="progress-bar-wrap">
+                    <div class="progress-bar-fill" id="progressFill"></div>
+                  </div>
+                  <p class="progress-label" id="progressLabel">0 of 25 completed</p>
+
+                  <div class="checklist" id="checklist">
+                    <p class="checklist-group-title">Week 1 to 2: Foundation</p>
+                    <label class="check-item" data-id="c1"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Learn everyone's name and role in your immediate team</span></label>
+                    <label class="check-item" data-id="c2"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Map the informal power structure, not just the org chart</span></label>
+                    <label class="check-item" data-id="c3"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Identify your manager's communication style and match it</span></label>
+                    <label class="check-item" data-id="c4"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Deliver your first task on time with no follow-up required</span></label>
+                    <label class="check-item" data-id="c5"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Find out what success looks like in this role, specifically</span></label>
+
+                    <p class="checklist-group-title">Week 3 to 4: Establish</p>
+                    <label class="check-item" data-id="c6"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Deliver two things without being followed up on</span></label>
+                    <label class="check-item" data-id="c7"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Have a genuine conversation with someone outside your team</span></label>
+                    <label class="check-item" data-id="c8"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Ask one good question in a meeting, not as a show, as a contribution</span></label>
+                    <label class="check-item" data-id="c9"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Start your contributions log (what you worked on, what you delivered)</span></label>
+                    <label class="check-item" data-id="c10"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Privately notice one thing that could work better. Do not say anything yet</span></label>
+
+                    <p class="checklist-group-title">Month 2: Build</p>
+                    <label class="check-item" data-id="c11"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Over-deliver on one piece of work, slightly and quietly</span></label>
+                    <label class="check-item" data-id="c12"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Introduce yourself to someone cross-functional</span></label>
+                    <label class="check-item" data-id="c13"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Bring one small improvement idea, with a solution attached</span></label>
+                    <label class="check-item" data-id="c14"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Ask for specific feedback on something you delivered</span></label>
+                    <label class="check-item" data-id="c15"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Keep the contributions log going consistently</span></label>
+
+                    <p class="checklist-group-title">Month 3: Position</p>
+                    <label class="check-item" data-id="c16"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Have the development conversation with your manager</span></label>
+                    <label class="check-item" data-id="c17"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Identify who your strongest internal advocate is</span></label>
+                    <label class="check-item" data-id="c18"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Make sure your best work is visible to someone senior</span></label>
+                    <label class="check-item" data-id="c19"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Set goals for the next quarter in your own head before anyone asks</span></label>
+                    <label class="check-item" data-id="c20"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Do a self-review: what have you delivered, learned and what do you want next?</span></label>
+                    <label class="check-item" data-id="c21"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Ask for your team directory or photo board in the first week</span></label>
+                    <label class="check-item" data-id="c22"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Spend lunch with your team at least twice in the first month</span></label>
+                    <label class="check-item" data-id="c23"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Write a morning to-do list every day for two weeks straight</span></label>
+                    <label class="check-item" data-id="c24"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Volunteer for one piece of work that was not specifically assigned to you</span></label>
+                    <label class="check-item" data-id="c25"><span class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2 6 5 9 10 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="check-label">Handle your first mistake calmly and come back with a solution</span></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 08 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">08</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">When You Get It Wrong</span>
+                  <span class="acc-teaser">You will. Everyone does. What separates people is not whether they mess up — it is what they do next.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>Your first mistake in a corporate role feels enormous. It is not. What matters is how you handle it.</p>
+                  <p>Do not spiral. Do not go quiet. Own it, go to your manager with what happened and what you think the fix is, and move on. The people who try to cover mistakes, minimise them or blame others are the ones whose reputations actually suffer. The people who call it clearly and come with a solution become the ones people trust to handle hard things.</p>
+                  <p>You will have a bad day. You will misread something, miss a deadline, send something to the wrong person. This is not the end of anything. It is part of building the resilience that makes a career. Bounce back. Show up the next day. Keep going.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACK + PREV -->
+    <section class="section">
+      <div class="container">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-5); padding-top:var(--sp-8); border-top:1px solid var(--color-border)">
+          <a href="resources.html" style="font-size:var(--text-sm); font-weight:var(--fw-bold); color:var(--color-grey); text-decoration:none; display:flex; align-items:center; gap:var(--sp-2);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to The Access Files
+          </a>
+          <a href="resource-resume.html" class="btn btn-outline">Read: The Resume Nobody Taught You &nbsp;→</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="email-section">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="headline headline-white" style="margin-bottom:var(--sp-5)">Want more of this?</h2>
+          <p class="label label-light" style="letter-spacing:.06em">Join the community. Get every playbook, every event, every insight.</p>
+        </div>
+        <div class="reveal d1" style="margin-top:var(--sp-10); display:flex; gap:var(--sp-4); justify-content:center; flex-wrap:wrap;">
+          <a href="community.html" class="btn btn-outline-white btn-lg">Join the Community</a>
+          <a href="resources.html" class="btn btn-outline-white btn-lg">More Playbooks</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="nav-logo" style="margin-bottom:var(--sp-4)">
+            <svg width="22" height="22" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="16" y="25" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">F</text>
+              <path d="M2 31 Q10 27 16 29 Q22 27 30 31" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+              <path d="M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="nav-logo-word" style="font-size:var(--text-base)">Foundera</span>
+          </a>
+          <p class="footer-brand-tagline">Where founders are made.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/foundera.au" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.tiktok.com/@foundera.au" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            <a href="https://www.youtube.com/@foundera" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.linkedin.com/company/founderaau" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="mailto:team@founderaa.com.au" class="footer-social-icon" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Platform</p>
+          <nav class="footer-col-links">
+            <a href="what-we-do.html" class="footer-link">What We Do</a>
+            <a href="events.html"     class="footer-link">Events</a>
+            <a href="resources.html" class="footer-link">The Access Files</a>
+            <a href="community.html"  class="footer-link">Community</a>
+          </nav>
+        </div>
+        <div>
+          <p class="footer-col-title">Connect</p>
+          <nav class="footer-col-links">
+            <a href="https://www.instagram.com/foundera.au" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+            <a href="https://www.tiktok.com/@foundera.au" target="_blank" rel="noopener noreferrer" class="footer-link">TikTok</a>
+            <a href="https://www.youtube.com/@foundera" target="_blank" rel="noopener noreferrer" class="footer-link">YouTube</a>
+            <a href="https://www.linkedin.com/company/founderaau" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+            <a href="https://www.skool.com" target="_blank" rel="noopener noreferrer" class="footer-link">Skool Community</a>
+            <a href="partners.html"  class="footer-link">Become a Partner</a>
+            <a href="partners.html#speak" class="footer-link">Speak at an Event</a>
+            <a href="mailto:team@founderaa.com.au" class="footer-link">Contact</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Foundera. All rights reserved.</p>
+        <div class="footer-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    /* Nav hide/show */
+    (function(){var nav=document.getElementById('nav'),last=0,tick=false;window.addEventListener('scroll',function(){if(!tick){requestAnimationFrame(function(){var y=window.scrollY;nav.classList.toggle('scrolled',y>10);nav.classList.toggle('hidden',y>last&&y>80);last=y;tick=false;});tick=true;}},{passive:true});})();
+
+    /* Scroll reveal */
+    (function(){var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -32px 0px'});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});})();
+
+    /* Accordion + reading progress */
+    (function(){
+      var btns  = document.querySelectorAll('[data-acc]');
+      var fill  = document.getElementById('daysProgressFill');
+      var label = document.getElementById('daysProgressLabel');
+      var total = btns.length;
+      var read  = {};
+
+      // section 01 starts open — mark as read
+      if(btns[0]) read[0] = true;
+
+      function updateProgress(){
+        var done = Object.keys(read).length;
+        var pct  = Math.round((done / total) * 100);
+        if(fill)  fill.style.width  = pct + '%';
+        if(label) label.textContent = done + ' of ' + total + ' sections read';
+      }
+      updateProgress();
+
+      btns.forEach(function(btn, idx){
+        btn.addEventListener('click', function(){
+          var expanded = btn.getAttribute('aria-expanded') === 'true';
+          var body     = btn.nextElementSibling;
+          var item     = btn.closest('.acc-item');
+          btn.setAttribute('aria-expanded', String(!expanded));
+          body.classList.toggle('is-open', !expanded);
+          body.setAttribute('aria-hidden', String(expanded));
+          item.classList.toggle('acc-open', !expanded);
+          if(!expanded){ read[idx] = true; updateProgress(); }
+        });
+      });
+    })();
+
+    /* Interactive checklist with localStorage */
+    (function(){
+      var items = document.querySelectorAll('.check-item');
+      var fill  = document.getElementById('progressFill');
+      var label = document.getElementById('progressLabel');
+      var total = items.length;
+      var KEY   = 'foundera_90days_v1';
+
+      function save(){
+        var state = {};
+        items.forEach(function(el){ state[el.getAttribute('data-id')] = el.classList.contains('checked'); });
+        try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+      }
+      function updateProgress(){
+        var done = document.querySelectorAll('.check-item.checked').length;
+        var pct  = Math.round((done / total) * 100);
+        if(fill)  fill.style.width  = pct + '%';
+        if(label) label.textContent = done + ' of ' + total + ' completed';
+      }
+      function load(){
+        var saved;
+        try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ saved = {}; }
+        items.forEach(function(el){
+          if(saved[el.getAttribute('data-id')]) el.classList.add('checked');
+        });
+        updateProgress();
+      }
+
+      items.forEach(function(el){
+        el.addEventListener('click', function(e){
+          e.preventDefault();
+          el.classList.toggle('checked');
+          save();
+          updateProgress();
+        });
+      });
+
+      load();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Resume Nobody Taught You | Foundera — Real resume advice from the other side of the table." />
+  <meta name="theme-color" content="#0A0A0A" />
+  <title>The Resume Nobody Taught You | Foundera</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 38' fill='none'%3E%3Ctext x='16' y='25' text-anchor='middle' font-family='Georgia%2Cserif' font-size='26' font-weight='700' fill='%230A0A0A'%3EF%3C%2Ftext%3E%3Cpath d='M2 31 Q10 27 16 29 Q22 27 30 31' stroke='%230A0A0A' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3Cpath d='M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5' stroke='%230A0A0A' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C%2Fsvg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .resource-hero {
+      padding: 140px 0 var(--sp-20);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .resource-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-6);
+      flex-wrap: wrap;
+    }
+    .resource-read-time {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      color: var(--color-grey);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .resource-hero-h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: var(--fw-black);
+      letter-spacing: var(--ls-tightest);
+      line-height: .95;
+      margin-bottom: var(--sp-6);
+    }
+    .resource-hero-sub {
+      font-size: clamp(var(--text-base), 1.8vw, var(--text-xl));
+      font-weight: var(--fw-medium);
+      color: var(--color-grey);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: var(--sp-8);
+    }
+    .resource-intro-note {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      font-weight: var(--fw-medium);
+      max-width: 580px;
+      line-height: 1.8;
+      padding: var(--sp-6) var(--sp-8);
+      border-left: 3px solid var(--color-black);
+      background: var(--color-off-white);
+      border-radius: 0 var(--r-card) var(--r-card) 0;
+    }
+    .resource-intro-note strong { color: var(--color-black); font-weight: var(--fw-bold); }
+
+    /* ── Accordion: redesigned for clarity and breathing room ── */
+    .acc-wrap { max-width: 800px; margin: 0 auto; }
+    .acc-list { border-top: 1px solid var(--color-border); }
+
+    .acc-item {
+      border-bottom: 1px solid var(--color-border);
+      transition: border-left-color .25s ease, padding-left .25s ease;
+    }
+    .acc-item.acc-open {
+      border-left: 3px solid var(--color-black);
+      padding-left: var(--sp-6);
+      margin-left: calc(-3px - var(--sp-6));
+    }
+
+    .acc-trigger {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-5);
+      padding: var(--sp-8) 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+    }
+    .acc-trigger:hover .acc-title { opacity: .7; }
+
+    /* Large dimmed number — lights up when open */
+    .acc-num {
+      font-size: var(--text-2xl);
+      font-weight: var(--fw-black);
+      letter-spacing: -.03em;
+      color: rgba(10,10,10,.12);
+      min-width: 48px;
+      line-height: 1;
+      padding-top: 3px;
+      transition: color .25s ease;
+      flex-shrink: 0;
+    }
+    .acc-trigger[aria-expanded="true"] .acc-num { color: var(--color-black); }
+
+    /* Title + teaser grouped */
+    .acc-title-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+    .acc-title {
+      font-size: clamp(var(--text-base), 2vw, var(--text-xl));
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-tight);
+      color: var(--color-black);
+      line-height: 1.2;
+      transition: opacity .2s ease;
+    }
+    /* Teaser always visible, gives readers a preview before expanding */
+    .acc-teaser {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-medium);
+      color: var(--color-grey);
+      line-height: 1.55;
+      letter-spacing: .01em;
+    }
+
+    .acc-icon {
+      display: flex;
+      align-items: center;
+      color: var(--color-grey);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .acc-trigger[aria-expanded="true"] .acc-icon { transform: rotate(180deg); }
+
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .5s cubic-bezier(.4,0,.2,1);
+    }
+    .acc-body.is-open { max-height: 8000px; }
+
+    /* Content inner: offset aligns with title, not number */
+    .acc-inner {
+      padding: var(--sp-2) 0 var(--sp-12) calc(48px + var(--sp-5));
+    }
+
+    /* Lead paragraph — slightly larger and darker */
+    .acc-inner > p:first-child {
+      font-size: var(--text-base);
+      color: var(--color-black);
+      line-height: 1.8;
+      font-weight: var(--fw-medium);
+      margin-bottom: var(--sp-6);
+    }
+    .acc-inner p {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      line-height: 2.0;
+      margin-bottom: var(--sp-6);
+      font-weight: var(--fw-medium);
+    }
+    .acc-inner p:last-child { margin-bottom: 0; }
+    .acc-inner strong { color: var(--color-black); font-weight: var(--fw-bold); }
+
+    .acc-inner h4 {
+      font-size: var(--text-lg);
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-tight);
+      color: var(--color-black);
+      margin: var(--sp-10) 0 var(--sp-4);
+      padding-bottom: var(--sp-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .acc-inner ul {
+      margin: var(--sp-4) 0 var(--sp-8);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      list-style: none;
+      padding: 0;
+    }
+    .acc-inner li {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      line-height: 1.8;
+      font-weight: var(--fw-medium);
+      padding-left: var(--sp-5);
+      position: relative;
+    }
+    .acc-inner li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(10,10,10,.28);
+      font-weight: var(--fw-bold);
+    }
+
+    /* Callout block */
+    .callout {
+      border-left: 3px solid var(--color-black);
+      background: var(--color-off-white);
+      border-radius: 0 var(--r-card) var(--r-card) 0;
+      padding: var(--sp-6) var(--sp-7);
+      margin: var(--sp-8) 0;
+    }
+    .callout p {
+      font-size: var(--text-sm) !important;
+      color: var(--color-black) !important;
+      font-weight: var(--fw-bold) !important;
+      line-height: 1.65 !important;
+      margin: 0 !important;
+    }
+
+    /* Before/After examples */
+    .example-pair { margin: var(--sp-6) 0; display: flex; flex-direction: column; gap: var(--sp-3); }
+    .example-block { border-radius: 12px; padding: var(--sp-5) var(--sp-6); }
+    .example-block.bad  { background: #fdf2f2; border: 1px solid #eecece; }
+    .example-block.good { background: #f2f7f3; border: 1px solid #c4dbc5; }
+    .example-label {
+      font-size: 10px;
+      font-weight: var(--fw-black);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-2);
+    }
+    .example-label.bad  { color: #b94a48; }
+    .example-label.good { color: #3a7d44; }
+    .example-text {
+      font-size: var(--text-sm);
+      font-weight: var(--fw-medium);
+      color: var(--color-black);
+      line-height: 1.7;
+    }
+
+    /* Tip list */
+    .tip-list { display: flex; flex-direction: column; gap: var(--sp-5); margin: var(--sp-6) 0; }
+    .tip-item { display: flex; gap: var(--sp-4); align-items: flex-start; }
+    .tip-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--color-black);
+      flex-shrink: 0; margin-top: 8px;
+    }
+    .tip-text {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      line-height: 1.8;
+      font-weight: var(--fw-medium);
+    }
+    .tip-text strong { color: var(--color-black); }
+
+    /* Reading progress bar at top of guide */
+    .acc-progress-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-10);
+      padding: var(--sp-4) var(--sp-5);
+      background: var(--color-off-white);
+      border-radius: var(--r-sm);
+    }
+    .acc-progress-track {
+      flex: 1;
+      height: 3px;
+      background: var(--color-border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .acc-progress-fill {
+      height: 100%;
+      background: var(--color-black);
+      border-radius: 100px;
+      width: 0%;
+      transition: width .4s cubic-bezier(.4,0,.2,1);
+    }
+    .acc-progress-label {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      color: var(--color-grey);
+      white-space: nowrap;
+      letter-spacing: .05em;
+    }
+
+    /* Resume templates section */
+    .template-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-5);
+      margin: var(--sp-6) 0;
+    }
+    @media (max-width: 640px) { .template-grid { grid-template-columns: 1fr; } }
+    .template-card {
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: box-shadow .2s ease, transform .2s ease;
+    }
+    .template-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.09); transform: translateY(-2px); }
+    .template-preview {
+      background: #f8f7f5;
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--sp-5) var(--sp-6);
+      min-height: 140px;
+      position: relative;
+      font-size: 7px;
+      line-height: 1.4;
+      overflow: hidden;
+    }
+    .tp-name  { font-size: 9px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 3px; }
+    .tp-contact { font-size: 6px; color: #888; margin-bottom: 6px; }
+    .tp-divider { height: 1px; background: #ccc; margin: 5px 0; }
+    .tp-section-head { font-size: 6px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #333; margin: 5px 0 3px; }
+    .tp-line   { height: 5px; background: #e0e0e0; border-radius: 2px; margin-bottom: 3px; }
+    .tp-line.w80 { width: 80%; }
+    .tp-line.w65 { width: 65%; }
+    .tp-line.w90 { width: 90%; }
+    .tp-line.w50 { width: 50%; }
+    .tp-line.w70 { width: 70%; }
+    .tp-accent { border-left: 2px solid #0a0a0a; padding-left: 6px; }
+    .tp-badge  { display: inline-block; background: #0a0a0a; color: #fff; font-size: 5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 1px 5px; border-radius: 3px; margin-bottom: 5px; }
+    .template-info {
+      padding: var(--sp-4) var(--sp-5);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-3);
+    }
+    .template-info-left { display: flex; flex-direction: column; gap: 3px; }
+    .template-name { font-size: var(--text-sm); font-weight: var(--fw-bold); color: var(--color-black); }
+    .template-roles { font-size: var(--text-xs); color: var(--color-grey); font-weight: var(--fw-medium); }
+    .template-dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: var(--sp-2) var(--sp-4);
+      border: 1.5px solid var(--color-black);
+      border-radius: var(--r-pill);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      color: var(--color-black);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .18s ease, color .18s ease;
+      background: none;
+      font-family: inherit;
+    }
+    .template-dl-btn:hover { background: var(--color-black); color: #fff; }
+
+    /* Full-screen template modal */
+    .tmpl-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(10,10,10,.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: var(--sp-6);
+    }
+    .tmpl-modal.is-open { display: flex; }
+    .tmpl-modal-inner {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 780px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .tmpl-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--sp-5) var(--sp-6);
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1;
+      border-radius: 16px 16px 0 0;
+    }
+    .tmpl-modal-title { font-size: var(--text-base); font-weight: var(--fw-bold); }
+    .tmpl-modal-actions { display: flex; gap: var(--sp-3); align-items: center; }
+    .tmpl-close-btn {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--color-border);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: var(--color-grey);
+      background: none;
+      font-family: inherit;
+      transition: background .15s ease, color .15s ease;
+    }
+    .tmpl-close-btn:hover { background: var(--color-black); color: #fff; border-color: var(--color-black); }
+    .tmpl-print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: var(--sp-2) var(--sp-5);
+      background: var(--color-black);
+      color: #fff;
+      border: none;
+      border-radius: var(--r-pill);
+      font-size: var(--text-xs);
+      font-weight: var(--fw-bold);
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity .15s ease;
+    }
+    .tmpl-print-btn:hover { opacity: .82; }
+    /* The resume template itself */
+    .resume-doc {
+      padding: 40px 48px 48px;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      font-size: 12px;
+      line-height: 1.55;
+      color: #0a0a0a;
+    }
+    .resume-doc .r-name  { font-size: 26px; font-weight: 800; letter-spacing: -.03em; margin-bottom: 4px; }
+    .resume-doc .r-contact { font-size: 10px; color: #666; margin-bottom: 18px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .resume-doc .r-contact span::before { content: '·'; margin-right: 12px; color: #ccc; }
+    .resume-doc .r-contact span:first-child::before { display: none; }
+    .resume-doc hr { border: none; border-top: 1.5px solid #0a0a0a; margin: 0 0 14px; }
+    .resume-doc .r-section { margin-bottom: 22px; }
+    .resume-doc .r-section-head {
+      font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+      color: #0a0a0a; margin-bottom: 10px;
+    }
+    .resume-doc .r-entry { margin-bottom: 14px; }
+    .resume-doc .r-entry-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
+    .resume-doc .r-org   { font-weight: 700; font-size: 12px; }
+    .resume-doc .r-role  { font-size: 11px; color: #444; margin-bottom: 5px; }
+    .resume-doc .r-date  { font-size: 10px; color: #888; white-space: nowrap; }
+    .resume-doc ul { padding-left: 14px; margin: 0; }
+    .resume-doc li { margin-bottom: 4px; font-size: 11px; color: #333; line-height: 1.55; }
+    .resume-doc .r-skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; }
+    .resume-doc .r-skill-item { font-size: 11px; color: #333; }
+    .resume-doc .r-footer { margin-top: 28px; padding-top: 10px; border-top: 1px solid #e8e8e8; text-align: center; font-size: 9px; color: #bbb; letter-spacing: .05em; }
+    /* Finance template uses a left accent bar on sections */
+    .resume-doc.finance .r-section-head { border-left: 3px solid #0a0a0a; padding-left: 8px; }
+    /* Law template uses a slightly more formal look */
+    .resume-doc.law hr { border-top-width: 2px; }
+    .resume-doc.law .r-name { font-family: Georgia, serif; letter-spacing: -.01em; }
+    /* Modern template uses a two-tone header */
+    .resume-doc.modern .r-header { background: #0a0a0a; margin: -40px -48px 28px; padding: 30px 48px; }
+    .resume-doc.modern .r-name  { color: #fff; }
+    .resume-doc.modern .r-contact { color: rgba(255,255,255,.6); }
+    .resume-doc.modern hr { border-top-color: #e0e0e0; }
+
+    @media print {
+      body > *:not(.tmpl-modal) { display: none !important; }
+      .tmpl-modal { display: flex !important; position: static !important; background: none !important; padding: 0 !important; }
+      .tmpl-modal-inner { max-height: none !important; border-radius: 0 !important; box-shadow: none !important; }
+      .tmpl-modal-header { display: none !important; }
+      .resume-doc { padding: 0 !important; }
+      .r-footer { display: block !important; }
+    }
+
+    .section-intro { padding: var(--sp-16) 0 0; }
+
+    @media (max-width: 768px) {
+      .resource-hero { padding: 120px 0 var(--sp-14); }
+      .acc-inner { padding-left: 0; }
+      .template-grid { grid-template-columns: 1fr; }
+      .resume-doc { padding: 24px; }
+      .resume-doc.modern .r-header { margin: -24px -24px 24px; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="28" height="28" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="16" y="25" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">F</text>
+          <path d="M2 31 Q10 27 16 29 Q22 27 30 31" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span class="nav-logo-word">Foundera</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="about.html"      class="nav-link">Our Story</a></li>
+        <li><a href="what-we-do.html" class="nav-link">What We Do</a></li>
+        <li><a href="events.html"     class="nav-link">Events</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="partners.html"   class="nav-link">Partners</a></li>
+        <li><a href="community.html"  class="nav-link">Community</a></li>
+      </ul>
+      <a href="community.html" class="btn btn-primary">Join the Movement</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="resource-hero">
+      <div class="container">
+        <div class="resource-meta reveal">
+          <span class="pill">The Access Files</span>
+          <span class="resource-read-time">10 min read</span>
+        </div>
+        <h1 class="resource-hero-h1 reveal d1">The Resume<br>Nobody Taught You</h1>
+        <p class="resource-hero-sub reveal d2">Direct and personal. Sounds like it came from someone who has been there. Because it did.</p>
+        <div class="resource-intro-note reveal d3">
+          <strong>Most resume advice was written by people who have not looked at a resume pile recently.</strong> It is generic, outdated and weirdly focused on formatting when the real problem is almost always the content. This is the version that comes from the other side of the table. From the conversations nobody has on paper. Read it once. Use it every time.
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCORDION CONTENT -->
+    <section class="section-intro section">
+      <div class="container">
+        <div class="acc-wrap">
+
+          <!-- Reading progress -->
+          <div class="acc-progress-bar">
+            <div class="acc-progress-track"><div class="acc-progress-fill" id="resumeProgressFill"></div></div>
+            <span class="acc-progress-label" id="resumeProgressLabel">0 of 10 sections read</span>
+          </div>
+
+          <div class="acc-list">
+
+            <!-- 01 -->
+            <div class="acc-item acc-open reveal">
+              <button class="acc-trigger" aria-expanded="true" data-acc>
+                <span class="acc-num">01</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Why Your Resume Is Being Ignored</span>
+                  <span class="acc-teaser">The honest version. Why every resume looks the same — and what yours needs to do instead.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body is-open" aria-hidden="false">
+                <div class="acc-inner">
+                  <p>The honest version. Without the softening.</p>
+                  <p>Most resumes are ignored because they are indistinguishable from every other resume. Not because they are bad. Because they are all the same.</p>
+                  <p>Every graduate writes bullet points the same way. Every resume has the same generic objective statement at the top. Every skills section lists Microsoft Office and "strong communication skills." None of it says anything. None of it is memorable. None of it gives a recruiter a reason to pause.</p>
+                  <p>The resume that gets read is the one that makes a recruiter stop. The one that gives them something specific enough to remember. The one that sounds like a person wrote it, not a template generated it.</p>
+                  <div class="callout">
+                    <p>You have roughly six seconds before a recruiter decides whether to keep reading. Six seconds. They are not reading your bullet points. They are scanning for signals. The question you need to answer is: what signal is my resume sending in those six seconds?</p>
+                  </div>
+                  <p>If the answer is "nothing distinctive," you have a problem. The rest of this guide fixes that.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 02 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">02</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">The 6 Second Scan</span>
+                  <span class="acc-teaser">Six seconds. That's what you have. Here is exactly what recruiters look at and in what order.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>When a recruiter opens your resume, here is what they actually process first. In order.</p>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Your name and contact details.</strong> Top of page. Easy to find. Professional email address. If your email is still from high school, change it before you send another application.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Your most recent role or university.</strong> And whether it is relevant to what they are hiring for.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>How long you were there and what you did.</strong> Bullet points, not paragraphs. They are scanning, not reading.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>One thing that stands out.</strong> A number. An achievement. A company name they recognise. Something specific.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>The overall visual impression.</strong> Is this readable or am I working too hard to understand the layout?</span></div>
+                  </div>
+                  <p>That is it. If you do not have anything that stands out in step four, you are relying on the recruiter to care enough to dig deeper. Some will. Most will not.</p>
+                  <h4>What creates a stand-out in the scan</h4>
+                  <ul>
+                    <li>A quantified achievement ("Grew social engagement by 34% over three months")</li>
+                    <li>A recognisable company or institution name</li>
+                    <li>A relevant keyword that matches the job description</li>
+                    <li>A clean layout that is easy to read at a glance</li>
+                  </ul>
+                  <h4>What kills the scan</h4>
+                  <ul>
+                    <li>Dense paragraphs instead of bullet points</li>
+                    <li>A personal photo (do not include one in Australia unless specifically requested)</li>
+                    <li>A two-page resume for under three years of experience</li>
+                    <li>A "personal objective" paragraph that says nothing specific</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 03 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">03</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">How to Write Bullet Points That Land</span>
+                  <span class="acc-teaser">The most important skill in this guide. The formula that turns job duties into achievements that stand out.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>This is the most important section in the guide. Read it twice.</p>
+                  <p>Most people write bullet points that describe their job. Recruiters do not care what your job was. They care what you did and what it produced. There is a difference.</p>
+                  <div class="callout">
+                    <p>The formula: [Strong action verb] + [What you did] + [Result or scale]</p>
+                  </div>
+                  <div class="example-pair">
+                    <div class="example-block bad">
+                      <p class="example-label bad">Too weak</p>
+                      <p class="example-text">Assisted with social media management</p>
+                    </div>
+                    <div class="example-block bad">
+                      <p class="example-label bad">Getting warmer</p>
+                      <p class="example-text">Managed Instagram and LinkedIn content for a retail brand with 12,000 followers</p>
+                    </div>
+                    <div class="example-block good">
+                      <p class="example-label good">This lands</p>
+                      <p class="example-text">Created and scheduled weekly content across Instagram and LinkedIn, growing the overall engagement rate from 2.1% to 3.8% over four months</p>
+                    </div>
+                  </div>
+                  <p>The difference is specificity and result. If you do not know the exact numbers, estimate and say so. "Supported a team of approximately 40 people" is better than "supported a large team." "Reduced processing time by roughly 20 percent" is better than "improved efficiency."</p>
+                  <h4>Common bullet point mistakes</h4>
+                  <p><strong>Starting every bullet with "Responsible for."</strong> This is passive and weak. You were not just responsible for things. You did things. Lead with the action: Managed, Created, Analysed, Developed, Coordinated, Reduced, Grew, Built, Delivered.</p>
+                  <p><strong>Listing duties instead of contributions.</strong> The bullet "Attended weekly team meetings" tells a recruiter nothing. Everyone attends meetings. What did you contribute? What happened because of you?</p>
+                  <p><strong>Being vague when you could be specific.</strong> "Worked with stakeholders" could mean anything. "Coordinated across six internal teams to deliver a product launch on a tight timeline" means something.</p>
+                  <div class="callout">
+                    <p>Test: if your bullet points could appear on anyone's resume for a similar role, they are not doing their job. They need to be specific enough that they could only really be yours.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 04 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">04</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">The Skills Section You Are Probably Getting Wrong</span>
+                  <span class="acc-teaser">Two mistakes wasting the most space on most resumes — and exactly what belongs there instead.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>The skills section is usually the most wasted space on a resume. Two big mistakes are responsible for most of the damage.</p>
+                  <h4>Mistake 1: Listing soft skills as skills</h4>
+                  <p>"Strong communication skills." "Team player." "Problem solver." These are not skills. They are claims without evidence. Every single person applying for the same role will write the exact same things. Listing them does not differentiate you. It blends you in.</p>
+                  <p>Soft skills belong in your bullet points, demonstrated through your experience. Not in a list that every recruiter has already learned to ignore.</p>
+                  <h4>Mistake 2: Listing things you barely know how to use</h4>
+                  <p>If a recruiter asked you to demonstrate your proficiency in something you have listed, could you? Confidently? If not, take it off. Getting caught overstating a skill in an interview is one of the most damaging things that can happen early in your career.</p>
+                  <h4>What actually belongs in your skills section</h4>
+                  <ul>
+                    <li>Software and tools (Adobe Suite, Salesforce, Xero, Python, Excel, Figma)</li>
+                    <li>Languages, if you are genuinely proficient and it is relevant</li>
+                    <li>Technical skills specific to your field</li>
+                    <li>Certifications or licences that matter for the role</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 05 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">05</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Tailoring Without Starting Over Every Time</span>
+                  <span class="acc-teaser">The right approach takes 15 minutes per application. Here is what to change and what to leave alone.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>Every resume you send should be different. Not completely rewritten, but meaningfully different. The same resume sent to twenty jobs will get you fewer responses than twenty slightly different resumes. That is not an opinion. It is what the data from recruiters consistently shows.</p>
+                  <p>The reason is simple: a hiring manager for an accounting role at Deloitte is not looking for the same signals as a hiring manager for a brand marketing role at a consumer goods company. They are solving different problems. Your resume needs to speak to their problem, not a generic version of your experience.</p>
+                  <h4>Tailoring to the specific job</h4>
+                  <p><strong>Read the job description like a brief, not a checklist.</strong> What are they actually asking for? What language do they use? If they say "stakeholder management" and you have "client coordination," change your wording. ATS systems and human reviewers both scan for the terms from their own posting.</p>
+                  <p><strong>Lead with what is most relevant.</strong> Within each role, reorder your bullet points so the most applicable experience appears first. If the job emphasises financial analysis and you have a bullet about that buried third, move it to the top.</p>
+                  <p><strong>Adjust your skills section for every application.</strong> Remove skills that have no bearing on this role. If you are applying for a data role and you have "Adobe InDesign" listed, take it off. Every line should earn its place.</p>
+                  <h4>Tailoring to the specific industry</h4>
+                  <p>This is where most people miss the opportunity entirely. The structure of your experience matters less than how you frame it for the industry you are targeting.</p>
+                  <p><strong>If you are applying for an accounting role at a Big 4 firm or mid-tier practice,</strong> your resume should foreground anything that touches numbers, compliance, systems or client work. Even if you have never done formal accounting, find the thread. Did you manage a budget for a student society? Did you process invoices or reconcile expenses in a part-time job? Did you complete units in financial reporting or tax? That is your accounting story. Lead with it. Do not bury it under generic "strong analytical skills" claims. Name the software you have used: Xero, MYOB, Excel. Mention any relevant coursework: taxation, auditing, financial accounting. A recruiter for an accounting firm is looking for evidence of numerical rigour and attention to detail. Show that explicitly.</p>
+                  <div class="example-pair">
+                    <div class="example-block bad">
+                      <p class="example-label bad">Generic — misses the target</p>
+                      <p class="example-text">Assisted finance team with administrative tasks and reporting. Strong attention to detail and organisational skills.</p>
+                    </div>
+                    <div class="example-block good">
+                      <p class="example-label good">Accounting-specific — lands</p>
+                      <p class="example-text">Reconciled weekly expense reports and processed supplier invoices using Xero, identifying and correcting three duplicate payments totalling $2,400. Completed coursework in financial accounting, management accounting and taxation (average grade: Distinction).</p>
+                    </div>
+                  </div>
+                  <p><strong>If you are applying for a marketing or communications role,</strong> your resume should foreground creative output, campaign results, channel-specific skills and audience understanding. Quantify engagement, reach and conversion wherever possible. Name the platforms and tools you have used. Show that you understand brand voice and audience, not just task execution.</p>
+                  <p><strong>If you are applying for a consulting or strategy role,</strong> prioritise evidence of structured thinking, problem framing and quantified impact. Consulting firms are specifically looking for how you approach problems. Case competitions, research projects and analytical internships all belong front and centre.</p>
+                  <p><strong>If you are applying for a finance or banking role,</strong> technical skills are screened hard. Name your modelling experience, the software you use, the transactions or deals you have had exposure to. If you have completed CFA Level 1 or any Bloomberg certifications, list them. Academic performance matters more here than in most fields, so your WAM or GPA belongs on the page.</p>
+                  <h4>What to actually change versus what to leave alone</h4>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Change:</strong> The first bullet on each role, the order of bullet points within roles, the skills section, any language that does not match the job description.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Leave alone:</strong> Your layout, formatting, education section structure, and the core substance of your experience. Those are your base.</span></div>
+                  </div>
+                  <div class="callout">
+                    <p>The test: read your tailored resume, then read the job description. Does your resume feel like it was written for this role? If someone who knows nothing about you read both, would they say "this person seems right for this job"? That is what you are aiming for. The tailoring process should take 15 to 30 minutes per application if your base resume is solid.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 06 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">06</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">What to Do When You Have No Experience</span>
+                  <span class="acc-teaser">The job ad says "1 to 2 years required." You have zero. Here is how you apply anyway — and why you should.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>Almost every entry-level job posting lists experience requirements that entry-level candidates cannot possibly have. "One to two years experience required" on a graduate role is not a hard filter. It is a wish list. The person who wrote it probably knows they will hire a graduate. Apply anyway.</p>
+                  <div class="callout">
+                    <p>A job posting is a description of an ideal candidate that does not exist. If you meet 60 to 70% of what they are asking for, you belong in the running. Do not self-select out before the company has had the chance to do it for you.</p>
+                  </div>
+                  <h4>What counts as experience</h4>
+                  <p>More than you think. The mistake most students make is assuming experience means paid, full-time, directly relevant work. It does not. Recruiters at graduate level are looking for evidence of capability, reliability and growth. That evidence can come from many places.</p>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>University clubs and societies.</strong> If you have held a position, managed a budget, run events, led a team or coordinated a project, that is real experience. Treat it like a job on your resume.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Part-time and casual work.</strong> Retail, hospitality, admin. Every role has transferable skills. Customer service builds communication and problem-solving under pressure. Shift supervision builds leadership. Cash reconciliation builds numerical accuracy. Find the thread.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Volunteering.</strong> If you have given sustained, committed time to an organisation, it counts. List it with the same structure as a job: what your role was, what you did, what the result was.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Internships, even short ones.</strong> Two weeks of work experience still belongs on the page if you did something real during it. Name the company, name what you did.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Academic projects and coursework.</strong> A semester-long research project, a group consulting assignment, a capstone — if it involved skills the role is asking for, it is relevant. Present it as a project entry, not just a course name.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Case competitions.</strong> If you have competed, list it. Even first-round participation demonstrates initiative and the ability to apply structured thinking under pressure.</span></div>
+                  </div>
+                  <h4>How to frame transferable skills confidently</h4>
+                  <p>The challenge is not that you lack skills. It is that you have not yet done the work of connecting what you have done to what the employer needs. That connection is your job to make, not theirs.</p>
+                  <p>Do not write "I have not worked in finance before, but..." That framing puts the gap front and centre. Instead, lead with what you have. Name the skill, show the evidence, let the relevance speak for itself.</p>
+                  <div class="example-pair">
+                    <div class="example-block bad">
+                      <p class="example-label bad">Undersells it</p>
+                      <p class="example-text">No formal finance experience, but I am a fast learner and eager to develop skills in the industry.</p>
+                    </div>
+                    <div class="example-block good">
+                      <p class="example-label good">Owns the transferable skill</p>
+                      <p class="example-text">Managed a $14,000 annual budget as Treasurer of the UNSW Finance Society, producing monthly P&amp;L reports and presenting year-end financial summaries to a committee of 12.</p>
+                    </div>
+                  </div>
+                  <h4>The cover letter is where you bridge the gap</h4>
+                  <p>If your resume does not tick every box, the cover letter is your chance to address it directly — not apologetically, but confidently. Acknowledge what you are building toward and make the case for why what you bring right now is worth the conversation.</p>
+                  <p>Something like: "I am completing my final year of a Bachelor of Commerce and have not yet held a formal accounting role. What I bring is strong academic grounding in financial reporting and taxation, practical experience managing financial records for a 200-member student organisation, and a clear intention to build a career in public practice." That is a better opening than most cover letters a recruiter will read that day.</p>
+                  <p>Be honest. Be direct. Frame everything as relevant, because if you are applying, you believe it is. Do not apologise for being early in your career. Everyone in that hiring manager's team was early in their career once.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 07 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">07</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">What to Do Before You Graduate: Building Your Profile Now</span>
+                  <span class="acc-teaser">The steps that make your final-year resume look nothing like everyone else's. Start them in first year.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>The students whose resumes stand out at graduation did not build them in final year. They built them across three or four years of small, deliberate decisions. The good news is that if you are reading this in first or second year, you still have time. If you are in third year, start immediately.</p>
+                  <h4>Join clubs and societies — then take a leadership role</h4>
+                  <p>Joining is fine. Being on the committee is better. Running something is best. Universities have commerce societies, law societies, investment clubs, consulting groups, marketing associations and dozens more. Pick one or two that are genuinely aligned with your career direction and commit to them properly. Get onto the committee. Take on a portfolio — events, sponsorships, education, marketing. The difference between "member" and "Vice President, Sponsorships" on a resume is significant, and the work to get there is entirely achievable.</p>
+                  <h4>Enter case competitions</h4>
+                  <p>Case competitions are one of the highest-return activities available to university students from a career-building perspective. They are free to enter, they build exactly the skills graduate employers screen for — structured problem solving, teamwork, communication under pressure — and they look strong on a resume regardless of whether you win. Many firms run their own competitions specifically as a talent pipeline. Deloitte, BCG, MinterEllison and others use competition results as a reason to fast-track applications. Enter early, enter often, and treat every one as practice.</p>
+                  <h4>Set up your LinkedIn profile from day one</h4>
+                  <p>Not in third year when you start applying. From the first week. Add your university, your major, your part-time roles as you take them, your society positions as you earn them. Connect with lecturers, classmates, guest speakers. A LinkedIn profile that has been building for three years looks different to one that was created two weeks before you sent your first application. Start it now and keep it current.</p>
+                  <h4>Seek out internships, even short ones, even unpaid</h4>
+                  <p>An unpaid two-week internship at a small firm is still a line on your resume. It is still a name, a context, a proof of initiative. Many students wait for formal internship programmes at large firms and miss out because those programmes are competitive and seasonal. In the meantime: reach out to small firms directly, ask your university's careers centre for contacts, ask family and family friends. A week at a suburban accounting firm still tells a recruiter that you sought out experience proactively rather than waiting for it to come to you.</p>
+                  <h4>Network while you are still studying</h4>
+                  <p>Informational interviews — where you ask someone already working in your target field for 20 minutes of their time to learn about their career — are one of the most underused tools available to students. Most professionals are willing to take them, particularly if you approach respectfully and come prepared with genuine questions. Attend industry events. Go to the panels your university hosts. Connect with alumni. The network you build as a student does not disappear when you graduate. It becomes the network you call on when you need a referral or a heads-up about a role.</p>
+                  <h4>Treat your academic results as a competitive asset</h4>
+                  <p>Your WAM or GPA is screened at entry for many graduate programmes, particularly in finance, law and consulting. Know what your WAM is. Know what the typical cutoff is for the programmes you want. If your results are strong, put them on your resume. If you made the Dean's List or received any academic award, list it. If you performed particularly well in units directly relevant to your target industry, you can note those individually. Academic results are one of the few things you can still improve while you are studying — and one of the few hard signals available when you have limited work experience.</p>
+                  <div class="callout">
+                    <p>The students who graduate with strong resumes are not necessarily smarter or luckier than their peers. They made a series of ordinary decisions — join the club, enter the competition, set up the LinkedIn, send the email — early enough that those decisions had time to compound. Start now.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 08 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">08</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">The Format That Works in Australia</span>
+                  <span class="acc-teaser">Australian market rules, not US career advice. Length, font, photos, ATS — all of it, straight.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>This is specifically about what works in the Australian job market. Some of this is different from what you might read on US career advice sites.</p>
+                  <div class="tip-list">
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Length:</strong> One page if you have under four years of experience. Two pages is fine if you genuinely have content to fill it. Three pages is rarely justified for anyone under 35.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Font:</strong> Something clean and modern. Inter, Calibri, Gill Sans. Not Times New Roman. Not fancy script. Not anything that makes you look like you are trying too hard.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Margins:</strong> Standard, around 2cm. Do not shrink them to fit more in. If it does not fit, cut the content.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Contact details:</strong> Email, LinkedIn, phone number. Location is optional but helps if applying to a specific city. Do not include your full home address.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>No photo.</strong> Unlike some European countries, photos are not standard in Australia and can cause issues. Leave it off unless specifically asked for.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>Colour:</strong> Minimal. One accent colour at most, used sparingly. Black and white reads as more professional than you think.</span></div>
+                    <div class="tip-item"><span class="tip-dot"></span><span class="tip-text"><strong>No tables or text boxes.</strong> They cause problems with ATS software that many companies use to filter resumes before a human sees them. A simple layout without them works best.</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 09 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">09</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Before You Hit Submit</span>
+                  <span class="acc-teaser">The final five checks most people skip. None of them take more than two minutes. All of them matter.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>The final check most people skip. Do not skip it.</p>
+                  <h4>Read it out loud</h4>
+                  <p>Everything that sounds awkward when you say it out loud needs to be rewritten. Your resume should sound like a competent, thoughtful person wrote it, not a document generator.</p>
+                  <h4>Run the plain text test</h4>
+                  <p>Copy and paste your resume into Notepad or TextEdit, which strips all formatting. If it becomes completely unreadable, an ATS will struggle with it too. Clean it up.</p>
+                  <h4>Verify every claim</h4>
+                  <p>Could you talk confidently about every single thing on this resume if asked in an interview? If there is anything you would feel uncomfortable defending, take it off or reframe it honestly.</p>
+                  <h4>Get a second pair of eyes</h4>
+                  <p>Ask someone who does not know your work history to read it. Then ask them: "After reading this, what do I do and what am I good at?" If they cannot answer clearly, your resume is not clear enough.</p>
+                  <h4>Send it as a PDF</h4>
+                  <p>Unless specifically told otherwise. A PDF looks identical on every device. A Word document does not.</p>
+                  <div class="callout">
+                    <p>Apply even when you do not meet 100% of the criteria. If you meet 60 to 70% of what they are asking for, apply. Hiring managers write a wish list, not a mandatory specification. The resume gets you the conversation. The conversation gets you the role.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10 -->
+            <div class="acc-item reveal">
+              <button class="acc-trigger" aria-expanded="false" data-acc>
+                <span class="acc-num">10</span>
+                <div class="acc-title-group">
+                  <span class="acc-title">Resume Templates: 6 Industry Formats</span>
+                  <span class="acc-teaser">Six ready-to-use formats covering finance, law, accounting, marketing, corporate and modern professional roles. Download and make them yours.</span>
+                </div>
+                <span class="acc-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </button>
+              <div class="acc-body" aria-hidden="true">
+                <div class="acc-inner">
+                  <p>These templates are built for the roles Foundera works with. Each one is ATS-clean, correctly formatted for the Australian market and structured for the specific industry. Use them as your base. Put your own content in. Do not change the structure. All templates are free. Download them, make them yours.</p>
+                  <div class="template-grid">
+
+                    <!-- Template 1: Finance -->
+                    <div class="template-card">
+                      <div class="template-preview">
+                        <div class="tp-badge">Finance &amp; Banking</div>
+                        <div class="tp-name">[Your Name]</div>
+                        <div class="tp-contact">phone · email · linkedin · sydney</div>
+                        <div class="tp-divider"></div>
+                        <div class="tp-section-head">Education</div>
+                        <div class="tp-accent"><div class="tp-line w80"></div><div class="tp-line w50"></div></div>
+                        <div class="tp-section-head">Experience</div>
+                        <div class="tp-line w90"></div><div class="tp-line w65"></div><div class="tp-line w80"></div>
+                        <div class="tp-section-head">Technical Skills</div>
+                        <div class="tp-line w70"></div>
+                      </div>
+                      <div class="template-info">
+                        <div class="template-info-left">
+                          <span class="template-name">Finance &amp; Banking</span>
+                          <span class="template-roles">IB, Big 4, Asset Management</span>
+                        </div>
+                        <button class="template-dl-btn" onclick="openTemplate('finance')">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                          Use Template
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Template 2: Law -->
+                    <div class="template-card">
+                      <div class="template-preview">
+                        <div class="tp-badge">Law</div>
+                        <div class="tp-name" style="font-family:Georgia,serif">[Your Name]</div>
+                        <div class="tp-contact">phone · email · linkedin</div>
+                        <div class="tp-divider" style="border-top:2px solid #333;height:0"></div>
+                        <div class="tp-section-head">Education &amp; Academic Awards</div>
+                        <div class="tp-line w80"></div><div class="tp-line w65"></div>
+                        <div class="tp-section-head">Legal Experience</div>
+                        <div class="tp-line w90"></div><div class="tp-line w70"></div>
+                        <div class="tp-section-head">Pro Bono &amp; Leadership</div>
+                        <div class="tp-line w75"></div>
+                      </div>
+                      <div class="template-info">
+                        <div class="template-info-left">
+                          <span class="template-name">Law</span>
+                          <span class="template-roles">Clerkships, Graduate Programs</span>
+                        </div>
+                        <button class="template-dl-btn" onclick="openTemplate('law')">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                          Use Template
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Template 3: Corporate Classic -->
+                    <div class="template-card">
+                      <div class="template-preview">
+                        <div class="tp-badge">Corporate</div>
+                        <div class="tp-name">[Your Name]</div>
+                        <div class="tp-contact">phone · email · linkedin · location</div>
+                        <div class="tp-divider"></div>
+                        <div class="tp-section-head">Education</div>
+                        <div class="tp-line w75"></div><div class="tp-line w55"></div>
+                        <div class="tp-section-head">Work Experience</div>
+                        <div class="tp-line w90"></div><div class="tp-line w65"></div><div class="tp-line w80"></div>
+                        <div class="tp-section-head">Skills &amp; Tools</div>
+                        <div class="tp-line w60"></div>
+                      </div>
+                      <div class="template-info">
+                        <div class="template-info-left">
+                          <span class="template-name">Corporate Classic</span>
+                          <span class="template-roles">Consulting, Operations, Marketing</span>
+                        </div>
+                        <button class="template-dl-btn" onclick="openTemplate('corporate')">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                          Use Template
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Template 4: Modern -->
+                    <div class="template-card">
+                      <div class="template-preview" style="background:#0a0a0a; padding:0; overflow:hidden;">
+                        <div style="background:#0a0a0a; padding:10px 12px 8px;">
+                          <div class="tp-name" style="color:#fff">[Your Name]</div>
+                          <div class="tp-contact" style="color:rgba(255,255,255,.5)">phone · email · linkedin</div>
+                        </div>
+                        <div style="background:#f8f7f5; padding:8px 12px 10px;">
+                          <div class="tp-section-head">Experience</div>
+                          <div class="tp-line w90"></div><div class="tp-line w65"></div>
+                          <div class="tp-section-head">Education</div>
+                          <div class="tp-line w80"></div>
+                          <div class="tp-section-head">Skills</div>
+                          <div class="tp-line w70"></div>
+                        </div>
+                      </div>
+                      <div class="template-info">
+                        <div class="template-info-left">
+                          <span class="template-name">Modern Professional</span>
+                          <span class="template-roles">Tech, Startups, Creative Industries</span>
+                        </div>
+                        <button class="template-dl-btn" onclick="openTemplate('modern')">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                          Use Template
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Template 5: Accounting & Advisory -->
+                    <div class="template-card">
+                      <div class="template-preview">
+                        <div class="tp-badge">Accounting &amp; Advisory</div>
+                        <div class="tp-name">[Your Name]</div>
+                        <div class="tp-contact">phone · email · linkedin · melbourne</div>
+                        <div class="tp-divider"></div>
+                        <div class="tp-section-head">Education</div>
+                        <div class="tp-accent"><div class="tp-line w80"></div><div class="tp-line w55"></div></div>
+                        <div class="tp-section-head">Work Experience</div>
+                        <div class="tp-line w90"></div><div class="tp-line w70"></div><div class="tp-line w80"></div>
+                        <div class="tp-section-head">Technical Skills</div>
+                        <div class="tp-line w65"></div>
+                      </div>
+                      <div class="template-info">
+                        <div class="template-info-left">
+                          <span class="template-name">Accounting &amp; Advisory</span>
+                          <span class="template-roles">Big 4, Mid-tier, Public Practice</span>
+                        </div>
+                        <button class="template-dl-btn" onclick="openTemplate('accounting')">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                          Use Template
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Template 6: Marketing & Communications -->
+                    <div class="template-card">
+                      <div class="template-preview">
+                        <div class="tp-badge">Marketing &amp; Comms</div>
+                        <div class="tp-name">[Your Name]</div>
+                        <div class="tp-contact">phone · email · linkedin · sydney</div>
+                        <div class="tp-divider"></div>
+                        <div class="tp-section-head">Education</div>
+                        <div class="tp-line w75"></div><div class="tp-line w50"></div>
+                        <div class="tp-section-head">Experience</div>
+                        <div class="tp-line w90"></div><div class="tp-line w65"></div><div class="tp-line w80"></div>
+                        <div class="tp-section-head">Tools &amp; Channels</div>
+                        <div class="tp-line w70"></div>
+                      </div>
+                      <div class="template-info">
+                        <div class="template-info-left">
+                          <span class="template-name">Marketing &amp; Communications</span>
+                          <span class="template-roles">Brand, Digital, PR, Agency</span>
+                        </div>
+                        <button class="template-dl-btn" onclick="openTemplate('marketing')">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                          Use Template
+                        </button>
+                      </div>
+                    </div>
+
+                  </div><!-- /template-grid -->
+                  <p style="font-size:var(--text-xs);color:var(--color-grey);margin-top:var(--sp-4)">Click "Use Template" to open a full print-ready version. Hit <strong style="color:var(--color-black)">Ctrl+P / Cmd+P</strong> to save as PDF. The Foundera mark in the footer is part of the template design.</p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /acc-list -->
+        </div><!-- /acc-wrap -->
+      </div>
+    </section>
+
+    <!-- ── Template Modals ── -->
+
+    <!-- Finance Modal -->
+    <div class="tmpl-modal" id="modal-finance" role="dialog" aria-modal="true" aria-label="Finance & Banking Resume Template">
+      <div class="tmpl-modal-inner">
+        <div class="tmpl-modal-header">
+          <span class="tmpl-modal-title">Finance &amp; Banking Template</span>
+          <div class="tmpl-modal-actions">
+            <button class="tmpl-print-btn" onclick="window.print()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Save as PDF
+            </button>
+            <button class="tmpl-close-btn" onclick="closeTemplate()" aria-label="Close">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="resume-doc finance">
+          <div class="r-name">[Your Full Name]</div>
+          <div class="r-contact">
+            <span>0400 000 000</span><span>your@email.com</span><span>linkedin.com/in/yourname</span><span>Sydney, NSW</span>
+          </div>
+          <hr>
+          <div class="r-section">
+            <div class="r-section-head">Education</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">University of Sydney</span><span class="r-date">Feb 2021 – Nov 2024</span></div>
+              <div class="r-role">Bachelor of Commerce (Finance / Accounting) — GPA 6.4 / 7.0</div>
+              <ul><li>Dean's List 2022, 2023 — top 5% of cohort</li><li>Relevant coursework: Financial Modelling, Corporate Finance, Derivatives, Valuation</li></ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Work Experience</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Firm Name] — Investment Banking Division</span><span class="r-date">Nov 2023 – Feb 2024</span></div>
+              <div class="r-role">Summer Analyst Intern · M&amp;A Advisory</div>
+              <ul>
+                <li>Built three-statement financial models and DCF analyses for two live M&amp;A transactions totalling $420M in deal value</li>
+                <li>Prepared pitchbook materials reviewed by Managing Directors and presented to two prospective clients</li>
+                <li>Conducted sector research across healthcare and infrastructure verticals, producing weekly market update memos circulated to 12-person deal team</li>
+              </ul>
+            </div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Company Name]</span><span class="r-date">Jan 2023 – Jul 2023</span></div>
+              <div class="r-role">Finance Intern · Corporate Treasury</div>
+              <ul>
+                <li>Automated weekly cash flow reporting using Excel macros, reducing manual processing time by approximately 3 hours per week</li>
+                <li>Supported FX exposure analysis across four currency pairs for $180M annual import portfolio</li>
+              </ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Leadership &amp; Activities</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">Finance &amp; Investment Society — University of Sydney</span><span class="r-date">Mar 2022 – Nov 2023</span></div>
+              <div class="r-role">Vice President, Education</div>
+              <ul><li>Led a team of six to deliver 12 workshops on financial modelling and careers in banking, attended by 340+ students across two semesters</li></ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Technical Skills</div>
+            <div class="r-skills-grid">
+              <div class="r-skill-item">Financial modelling (DCF, LBO, M&amp;A comps)</div>
+              <div class="r-skill-item">Excel (advanced: pivot tables, Power Query, macros)</div>
+              <div class="r-skill-item">Bloomberg Terminal, FactSet, Capital IQ</div>
+              <div class="r-skill-item">PowerPoint, Word (professional proficiency)</div>
+              <div class="r-skill-item">Python (data analysis — pandas, matplotlib)</div>
+              <div class="r-skill-item">SQL (intermediate)</div>
+            </div>
+          </div>
+          <div class="r-footer">Created with Foundera &nbsp;·&nbsp; foundera.com.au &nbsp;·&nbsp; Built for the capable. Not the connected.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Law Modal -->
+    <div class="tmpl-modal" id="modal-law" role="dialog" aria-modal="true" aria-label="Law Resume Template">
+      <div class="tmpl-modal-inner">
+        <div class="tmpl-modal-header">
+          <span class="tmpl-modal-title">Law Clerkship Template</span>
+          <div class="tmpl-modal-actions">
+            <button class="tmpl-print-btn" onclick="window.print()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Save as PDF
+            </button>
+            <button class="tmpl-close-btn" onclick="closeTemplate()" aria-label="Close">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="resume-doc law">
+          <div class="r-name">[Your Full Name]</div>
+          <div class="r-contact">
+            <span>0400 000 000</span><span>your@email.com</span><span>linkedin.com/in/yourname</span>
+          </div>
+          <hr>
+          <div class="r-section">
+            <div class="r-section-head">Education</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">University of New South Wales</span><span class="r-date">Feb 2020 – Nov 2025</span></div>
+              <div class="r-role">Bachelor of Laws (Honours) / Bachelor of Commerce — WAM 83.2</div>
+              <ul>
+                <li>High Distinction average in core law subjects including Contracts, Torts, Corporate Law and Evidence</li>
+                <li>Dean's Award for Academic Excellence — 2022, 2023</li>
+                <li>Law Review editorial board member — selected from 60 applicants</li>
+              </ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Legal Experience</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Law Firm Name]</span><span class="r-date">Nov 2024 – Feb 2025</span></div>
+              <div class="r-role">Seasonal Clerk · Corporate / M&amp;A</div>
+              <ul>
+                <li>Drafted due diligence memoranda and disclosure schedules for two ASX-listed M&amp;A transactions under senior associate supervision</li>
+                <li>Researched and summarised ASIC regulatory guidance on continuous disclosure obligations for a client briefing note used in board presentation</li>
+                <li>Attended client meetings and court hearings; prepared matter summaries distributed to partner and senior associates</li>
+              </ul>
+            </div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">UNSW Law Society — Pro Bono Program</span><span class="r-date">Mar 2023 – Nov 2024</span></div>
+              <div class="r-role">Student Advisor</div>
+              <ul><li>Provided preliminary legal advice to 30+ individuals on tenancy and employment matters under solicitor supervision; referred complex matters to community legal centres</li></ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Other Work Experience</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Company Name]</span><span class="r-date">Dec 2022 – Feb 2023</span></div>
+              <div class="r-role">Business Development Intern</div>
+              <ul><li>Managed client pipeline tracking across Salesforce for a team of eight; produced weekly reporting used in national sales meetings</li></ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Leadership &amp; Activities</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">UNSW Law Society</span><span class="r-date">Feb 2022 – Nov 2023</span></div>
+              <div class="r-role">Competitions Director</div>
+              <ul><li>Organised and ran the national moot court competition for 120 participants; managed a budget of $8,000 and a team of five committee members</li></ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Skills &amp; Interests</div>
+            <div class="r-skills-grid">
+              <div class="r-skill-item">Legal research (Westlaw AU, LexisNexis, Jade)</div>
+              <div class="r-skill-item">Microsoft Office Suite (advanced)</div>
+              <div class="r-skill-item">Mandarin (conversational)</div>
+              <div class="r-skill-item">Interests: corporate governance, competition law, arbitration</div>
+            </div>
+          </div>
+          <div class="r-footer">Created with Foundera &nbsp;·&nbsp; foundera.com.au &nbsp;·&nbsp; Built for the capable. Not the connected.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Corporate Modal -->
+    <div class="tmpl-modal" id="modal-corporate" role="dialog" aria-modal="true" aria-label="Corporate Resume Template">
+      <div class="tmpl-modal-inner">
+        <div class="tmpl-modal-header">
+          <span class="tmpl-modal-title">Corporate Classic Template</span>
+          <div class="tmpl-modal-actions">
+            <button class="tmpl-print-btn" onclick="window.print()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Save as PDF
+            </button>
+            <button class="tmpl-close-btn" onclick="closeTemplate()" aria-label="Close">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="resume-doc">
+          <div class="r-name">[Your Full Name]</div>
+          <div class="r-contact">
+            <span>0400 000 000</span><span>your@email.com</span><span>linkedin.com/in/yourname</span><span>Melbourne, VIC</span>
+          </div>
+          <hr>
+          <div class="r-section">
+            <div class="r-section-head">Education</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">University of Melbourne</span><span class="r-date">Feb 2021 – Nov 2024</span></div>
+              <div class="r-role">Bachelor of Commerce — Major: Management &amp; Marketing</div>
+              <ul><li>WAM 78.4 · Participated in Melbourne Consulting Challenge (finalist, 2023)</li></ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Work Experience</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Company Name]</span><span class="r-date">Jan 2024 – Jun 2024</span></div>
+              <div class="r-role">Operations &amp; Strategy Intern</div>
+              <ul>
+                <li>Analysed customer churn data across three product lines and presented findings to the Head of Strategy, leading to a pilot retention program for 1,200 at-risk accounts</li>
+                <li>Coordinated weekly cross-functional stand-ups between product, sales and operations teams (18 people); produced meeting notes and tracked action items to resolution</li>
+                <li>Built a competitor benchmarking dashboard in Excel and Google Sheets, updated fortnightly and used in monthly leadership reviews</li>
+              </ul>
+            </div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Company Name]</span><span class="r-date">Nov 2022 – Feb 2023</span></div>
+              <div class="r-role">Marketing Coordinator (Casual)</div>
+              <ul>
+                <li>Managed content calendar across Instagram and LinkedIn; grew combined following from 4,200 to 6,800 over three months</li>
+                <li>Supported campaign execution for two product launches, coordinating with design, copy and paid media agencies</li>
+              </ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Leadership &amp; Extracurriculars</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">Commerce Students Society — University of Melbourne</span><span class="r-date">Mar 2022 – Nov 2023</span></div>
+              <div class="r-role">Events Director</div>
+              <ul><li>Led a team of eight to deliver 14 industry networking events across the year; managed $22,000 budget and grew attendance by 38% year-on-year</li></ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Skills</div>
+            <div class="r-skills-grid">
+              <div class="r-skill-item">Excel, Google Sheets (advanced)</div>
+              <div class="r-skill-item">Salesforce (CRM management)</div>
+              <div class="r-skill-item">PowerPoint, Canva, Figma (basic)</div>
+              <div class="r-skill-item">SQL (basic queries and data pulls)</div>
+            </div>
+          </div>
+          <div class="r-footer">Created with Foundera &nbsp;·&nbsp; foundera.com.au &nbsp;·&nbsp; Built for the capable. Not the connected.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modern Modal -->
+    <div class="tmpl-modal" id="modal-modern" role="dialog" aria-modal="true" aria-label="Modern Professional Resume Template">
+      <div class="tmpl-modal-inner">
+        <div class="tmpl-modal-header">
+          <span class="tmpl-modal-title">Modern Professional Template</span>
+          <div class="tmpl-modal-actions">
+            <button class="tmpl-print-btn" onclick="window.print()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Save as PDF
+            </button>
+            <button class="tmpl-close-btn" onclick="closeTemplate()" aria-label="Close">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="resume-doc modern">
+          <div class="r-header">
+            <div class="r-name">[Your Full Name]</div>
+            <div class="r-contact">
+              <span>0400 000 000</span><span>your@email.com</span><span>linkedin.com/in/yourname</span><span>Brisbane, QLD</span>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Experience</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Company Name]</span><span class="r-date">Feb 2024 – Present</span></div>
+              <div class="r-role">Product &amp; Growth Associate</div>
+              <ul>
+                <li>Led user research initiative across 40 customer interviews, synthesising insights into a product roadmap prioritisation framework adopted by the product team</li>
+                <li>Built and maintained weekly growth dashboard tracking 11 KPIs across acquisition, activation and retention; presented to CEO and board monthly</li>
+                <li>Coordinated go-to-market execution for two feature launches, driving a combined 22% uplift in active users over six weeks post-launch</li>
+              </ul>
+            </div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Company Name]</span><span class="r-date">Nov 2022 – Jan 2024</span></div>
+              <div class="r-role">Marketing &amp; Content Coordinator</div>
+              <ul>
+                <li>Managed organic content strategy across four channels; grew LinkedIn following by 210% in 12 months</li>
+                <li>Produced monthly performance reports for client campaigns totalling $380,000 in annual media spend</li>
+              </ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Education</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">Queensland University of Technology</span><span class="r-date">Feb 2019 – Nov 2022</span></div>
+              <div class="r-role">Bachelor of Business (Marketing) — GPA 6.2 / 7.0</div>
+              <ul><li>Best Student Paper — Marketing Research unit, 2021 · Vice President, QUT Marketing Society</li></ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Skills</div>
+            <div class="r-skills-grid">
+              <div class="r-skill-item">Figma, Notion, Linear, Jira</div>
+              <div class="r-skill-item">Google Analytics 4, Mixpanel, Amplitude</div>
+              <div class="r-skill-item">HubSpot, Mailchimp, Meta Ads Manager</div>
+              <div class="r-skill-item">SQL (basic), Python (basic data analysis)</div>
+            </div>
+          </div>
+          <div class="r-footer">Created with Foundera &nbsp;·&nbsp; foundera.com.au &nbsp;·&nbsp; Built for the capable. Not the connected.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accounting Modal -->
+    <div class="tmpl-modal" id="modal-accounting" role="dialog" aria-modal="true" aria-label="Accounting & Advisory Resume Template">
+      <div class="tmpl-modal-inner">
+        <div class="tmpl-modal-header">
+          <span class="tmpl-modal-title">Accounting &amp; Advisory Template</span>
+          <div class="tmpl-modal-actions">
+            <button class="tmpl-print-btn" onclick="window.print()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Save as PDF
+            </button>
+            <button class="tmpl-close-btn" onclick="closeTemplate()" aria-label="Close">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="resume-doc finance">
+          <div class="r-name">[Your Full Name]</div>
+          <div class="r-contact">
+            <span>0400 000 000</span><span>your@email.com</span><span>linkedin.com/in/yourname</span><span>Melbourne, VIC</span>
+          </div>
+          <hr>
+          <div class="r-section">
+            <div class="r-section-head">Education</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">Monash University</span><span class="r-date">Feb 2021 – Nov 2024</span></div>
+              <div class="r-role">Bachelor of Commerce (Accounting) / Bachelor of Business Administration — WAM 79.6</div>
+              <ul>
+                <li>Dean's List 2023 — top 10% of cohort</li>
+                <li>Relevant coursework: Financial Accounting, Management Accounting, Auditing, Taxation Law, Corporate Reporting</li>
+                <li>Completed CPA Australia student membership — commenced CPA Programme (Foundation level)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Work Experience</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Big 4 / Mid-tier Firm Name] — Audit &amp; Assurance</span><span class="r-date">Nov 2023 – Feb 2024</span></div>
+              <div class="r-role">Vacation Clerk · External Audit</div>
+              <ul>
+                <li>Assisted senior auditors on two listed client engagements, performing substantive testing on accounts receivable, inventory and fixed assets totalling $34M in balance sheet exposure</li>
+                <li>Prepared lead schedules and working papers in accordance with firm methodology; reviewed and cleared by senior associate within agreed timelines on both engagements</li>
+                <li>Reconciled client trial balances to general ledger and identified a $48,000 accruals posting error, escalated and resolved prior to audit sign-off</li>
+              </ul>
+            </div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Company Name]</span><span class="r-date">Jan 2023 – Jul 2023</span></div>
+              <div class="r-role">Accounts Assistant (Part-time)</div>
+              <ul>
+                <li>Processed accounts payable and receivable transactions in Xero, reconciling weekly bank statements across three business entities</li>
+                <li>Prepared monthly BAS workings and GST reconciliations under supervision of the Financial Controller</li>
+                <li>Reduced debtor days from 42 to 31 over six months by implementing a structured follow-up schedule for overdue invoices</li>
+              </ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Leadership &amp; Activities</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">Monash Accounting Students Society</span><span class="r-date">Mar 2022 – Nov 2023</span></div>
+              <div class="r-role">Treasurer</div>
+              <ul>
+                <li>Managed a $28,000 annual budget across 16 events; produced monthly financial reports for the executive committee and delivered a year-end surplus of $3,200</li>
+                <li>Negotiated sponsorship agreements with three accounting firms, securing $9,500 in event funding</li>
+              </ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Technical Skills</div>
+            <div class="r-skills-grid">
+              <div class="r-skill-item">Xero, MYOB AccountRight (intermediate)</div>
+              <div class="r-skill-item">Excel (advanced: pivot tables, VLOOKUP, macros)</div>
+              <div class="r-skill-item">CaseWare, Teams and SharePoint (firm tools)</div>
+              <div class="r-skill-item">Microsoft Office Suite (professional proficiency)</div>
+              <div class="r-skill-item">SAP (basic exposure via university coursework)</div>
+              <div class="r-skill-item">SQL (basic data queries)</div>
+            </div>
+          </div>
+          <div class="r-footer">Created with Foundera &nbsp;·&nbsp; foundera.com.au &nbsp;·&nbsp; Built for the capable. Not the connected.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marketing Modal -->
+    <div class="tmpl-modal" id="modal-marketing" role="dialog" aria-modal="true" aria-label="Marketing & Communications Resume Template">
+      <div class="tmpl-modal-inner">
+        <div class="tmpl-modal-header">
+          <span class="tmpl-modal-title">Marketing &amp; Communications Template</span>
+          <div class="tmpl-modal-actions">
+            <button class="tmpl-print-btn" onclick="window.print()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Save as PDF
+            </button>
+            <button class="tmpl-close-btn" onclick="closeTemplate()" aria-label="Close">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="resume-doc">
+          <div class="r-name">[Your Full Name]</div>
+          <div class="r-contact">
+            <span>0400 000 000</span><span>your@email.com</span><span>linkedin.com/in/yourname</span><span>Sydney, NSW</span>
+          </div>
+          <hr>
+          <div class="r-section">
+            <div class="r-section-head">Education</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">University of Technology Sydney</span><span class="r-date">Feb 2021 – Nov 2024</span></div>
+              <div class="r-role">Bachelor of Communication (Advertising and Public Relations) — WAM 76.8</div>
+              <ul>
+                <li>Best Creative Strategy presentation — Advertising Campaigns unit, Semester 2 2023</li>
+                <li>Relevant coursework: Brand Strategy, Consumer Behaviour, Digital Marketing, Integrated Communications, Media Planning</li>
+              </ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Work Experience</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Agency / Brand Name]</span><span class="r-date">Jan 2024 – Jun 2024</span></div>
+              <div class="r-role">Marketing Intern · Brand and Content</div>
+              <ul>
+                <li>Developed and scheduled organic content across Instagram, TikTok and LinkedIn for three client accounts, growing combined reach by 41% over the internship period</li>
+                <li>Assisted in briefing and reviewing creative assets for a product relaunch campaign with a $120,000 paid media budget; coordinated feedback rounds between client, design and copy teams</li>
+                <li>Produced weekly performance reports using Google Analytics 4 and Meta Business Suite, identifying a 28% drop in click-through rate that led to a creative refresh approved by the account director</li>
+              </ul>
+            </div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">[Company Name]</span><span class="r-date">Nov 2022 – Feb 2023</span></div>
+              <div class="r-role">Social Media Coordinator (Casual)</div>
+              <ul>
+                <li>Managed day-to-day content posting and community management across Instagram and Facebook for a retail brand with 18,000 followers</li>
+                <li>Pitched and produced a six-week UGC campaign that generated 240 tagged posts and a 19% increase in profile visits</li>
+              </ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Leadership &amp; Activities</div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">UTS Marketing Society</span><span class="r-date">Mar 2022 – Nov 2023</span></div>
+              <div class="r-role">Marketing Director</div>
+              <ul>
+                <li>Led a team of four to produce all external communications for the society across email, Instagram and LinkedIn; grew Instagram following from 890 to 2,100 over 18 months</li>
+                <li>Designed and executed a sponsorship campaign that secured three industry partners contributing $6,000 in event funding</li>
+              </ul>
+            </div>
+            <div class="r-entry">
+              <div class="r-entry-header"><span class="r-org">UTS Marketer of the Year Competition</span><span class="r-date">Aug 2023</span></div>
+              <div class="r-role">Finalist — Brand Strategy Category</div>
+              <ul>
+                <li>Developed a full brand repositioning strategy for a brief set by a FMCG client; presented to a panel of industry judges, placing in the top four from 31 entries</li>
+              </ul>
+            </div>
+          </div>
+          <div class="r-section">
+            <div class="r-section-head">Tools &amp; Channels</div>
+            <div class="r-skills-grid">
+              <div class="r-skill-item">Meta Ads Manager, Google Ads (intermediate)</div>
+              <div class="r-skill-item">Google Analytics 4, Looker Studio</div>
+              <div class="r-skill-item">Canva, Adobe InDesign, Photoshop (intermediate)</div>
+              <div class="r-skill-item">Mailchimp, HubSpot (basic CRM and EDM)</div>
+              <div class="r-skill-item">Later, Sprout Social (scheduling and reporting)</div>
+              <div class="r-skill-item">Microsoft Office, Google Workspace</div>
+            </div>
+          </div>
+          <div class="r-footer">Created with Foundera &nbsp;·&nbsp; foundera.com.au &nbsp;·&nbsp; Built for the capable. Not the connected.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK LINK + NEXT RESOURCE -->
+    <section class="section">
+      <div class="container">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-5); padding-top:var(--sp-8); border-top:1px solid var(--color-border)">
+          <a href="resources.html" style="font-size:var(--text-sm); font-weight:var(--fw-bold); color:var(--color-grey); text-decoration:none; display:flex; align-items:center; gap:var(--sp-2);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to The Access Files
+          </a>
+          <a href="resource-90days.html" class="btn btn-outline">Next: Your First 90 Days &nbsp;→</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="email-section">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="headline headline-white" style="margin-bottom:var(--sp-5)">Want more of this?</h2>
+          <p class="label label-light" style="letter-spacing:.06em">Join the community. Get every playbook, every event, every insight.</p>
+        </div>
+        <div class="reveal d1" style="margin-top:var(--sp-10); display:flex; gap:var(--sp-4); justify-content:center; flex-wrap:wrap;">
+          <a href="community.html" class="btn btn-outline-white btn-lg">Join the Community</a>
+          <a href="resources.html" class="btn btn-outline-white btn-lg">More Playbooks</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="nav-logo" style="margin-bottom:var(--sp-4)">
+            <svg width="22" height="22" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="16" y="25" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">F</text>
+              <path d="M2 31 Q10 27 16 29 Q22 27 30 31" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+              <path d="M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="nav-logo-word" style="font-size:var(--text-base)">Foundera</span>
+          </a>
+          <p class="footer-brand-tagline">Where founders are made.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/foundera.au" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.tiktok.com/@foundera.au" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            <a href="https://www.youtube.com/@foundera" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.linkedin.com/company/founderaau" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="mailto:team@founderaa.com.au" class="footer-social-icon" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Platform</p>
+          <nav class="footer-col-links">
+            <a href="what-we-do.html" class="footer-link">What We Do</a>
+            <a href="events.html"     class="footer-link">Events</a>
+            <a href="resources.html" class="footer-link">The Access Files</a>
+            <a href="community.html"  class="footer-link">Community</a>
+          </nav>
+        </div>
+        <div>
+          <p class="footer-col-title">Connect</p>
+          <nav class="footer-col-links">
+            <a href="https://www.instagram.com/foundera.au" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+            <a href="https://www.tiktok.com/@foundera.au" target="_blank" rel="noopener noreferrer" class="footer-link">TikTok</a>
+            <a href="https://www.youtube.com/@foundera" target="_blank" rel="noopener noreferrer" class="footer-link">YouTube</a>
+            <a href="https://www.linkedin.com/company/founderaau" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+            <a href="https://www.skool.com" target="_blank" rel="noopener noreferrer" class="footer-link">Skool Community</a>
+            <a href="partners.html"  class="footer-link">Become a Partner</a>
+            <a href="partners.html#speak" class="footer-link">Speak at an Event</a>
+            <a href="mailto:team@founderaa.com.au" class="footer-link">Contact</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Foundera. All rights reserved.</p>
+        <div class="footer-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    /* Nav hide/show */
+    (function(){var nav=document.getElementById('nav'),last=0,tick=false;window.addEventListener('scroll',function(){if(!tick){requestAnimationFrame(function(){var y=window.scrollY;nav.classList.toggle('scrolled',y>10);nav.classList.toggle('hidden',y>last&&y>80);last=y;tick=false;});tick=true;}},{passive:true});})();
+
+    /* Scroll reveal */
+    (function(){var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -32px 0px'});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});})();
+
+    /* Accordion + reading progress */
+    (function(){
+      var btns  = document.querySelectorAll('[data-acc]');
+      var fill  = document.getElementById('resumeProgressFill');
+      var label = document.getElementById('resumeProgressLabel');
+      var total = btns.length;
+      var read  = {};
+
+      // section 01 starts open — mark as read
+      if(btns[0]) read[0] = true;
+
+      function updateProgress(){
+        var done = Object.keys(read).length;
+        var pct  = Math.round((done / total) * 100);
+        if(fill)  fill.style.width  = pct + '%';
+        if(label) label.textContent = done + ' of ' + total + ' sections read';
+      }
+      updateProgress();
+
+      btns.forEach(function(btn, idx){
+        btn.addEventListener('click', function(){
+          var expanded = btn.getAttribute('aria-expanded') === 'true';
+          var body     = btn.nextElementSibling;
+          var item     = btn.closest('.acc-item');
+          btn.setAttribute('aria-expanded', String(!expanded));
+          body.classList.toggle('is-open', !expanded);
+          body.setAttribute('aria-hidden', String(expanded));
+          item.classList.toggle('acc-open', !expanded);
+          // mark as read when opened
+          if(!expanded){ read[idx] = true; updateProgress(); }
+        });
+      });
+    })();
+
+    /* Template modal open / close */
+    function openTemplate(name){
+      var modal = document.getElementById('modal-' + name);
+      if(!modal) return;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeTemplate(){
+      document.querySelectorAll('.tmpl-modal.is-open').forEach(function(m){
+        m.classList.remove('is-open');
+      });
+      document.body.style.overflow = '';
+    }
+    // Close on backdrop click
+    document.querySelectorAll('.tmpl-modal').forEach(function(modal){
+      modal.addEventListener('click', function(e){
+        if(e.target === modal) closeTemplate();
+      });
+    });
+    // Close on Escape
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeTemplate();
+    });
+  </script>
+</body>
+</html>

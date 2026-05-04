@@ -1,0 +1,13 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Lightbulb circle -->
+  <circle cx="16" cy="13" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+  <!-- Glow filament lines inside -->
+  <line x1="16" y1="9" x2="16" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Base bars -->
+  <line x1="12" y1="23" x2="20" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <line x1="13" y1="26" x2="19" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <line x1="14" y1="29" x2="18" y2="29" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <!-- Connect circle to base -->
+  <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <line x1="20" y1="21" x2="20" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>

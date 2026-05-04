@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Our Story | Foundera was built because the gap between ambition and access was too wide for young Australians to cross alone." />
+  <meta name="theme-color" content="#0A0A0A" />
+  <meta property="og:title"       content="Our Story | Foundera" />
+  <meta property="og:description" content="Built because the gap between ambition and access was too wide to cross alone." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://foundera.com.au/about.html" />
+  <meta property="og:image"       content="https://foundera.com.au/og-image.png" />
+  <meta property="og:site_name"   content="Foundera" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Our Story | Foundera" />
+  <meta name="twitter:description" content="Built because the gap between ambition and access was too wide to cross alone." />
+  <meta name="twitter:image"       content="https://foundera.com.au/og-image.png" />
+  <title>Our Story | Foundera</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 38' fill='none'%3E%3Ctext x='16' y='25' text-anchor='middle' font-family='Georgia%2Cserif' font-size='26' font-weight='700' fill='%230A0A0A'%3EF%3C%2Ftext%3E%3Cpath d='M2 31 Q10 27 16 29 Q22 27 30 31' stroke='%230A0A0A' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3Cpath d='M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5' stroke='%230A0A0A' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C%2Fsvg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── About page specific ── */
+    .about-hero {
+      padding: 160px 0 var(--sp-32);
+      text-align: center;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .about-hero-h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: var(--fw-black);
+      letter-spacing: var(--ls-tightest);
+      line-height: .95;
+      margin-bottom: var(--sp-8);
+    }
+    .about-hero-sub {
+      font-size: clamp(var(--text-base), 1.8vw, var(--text-xl));
+      font-weight: var(--fw-medium);
+      color: var(--color-grey);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ── Origin section ── */
+    .origin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-20);
+      align-items: start;
+    }
+    .origin-label {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-black);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--color-grey);
+      margin-bottom: var(--sp-6);
+    }
+    .origin-headline {
+      font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+      font-weight: var(--fw-black);
+      letter-spacing: var(--ls-tighter);
+      line-height: 1.05;
+      margin-bottom: var(--sp-6);
+    }
+    .origin-body p {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      line-height: 1.85;
+      margin-bottom: var(--sp-5);
+      font-weight: var(--fw-medium);
+    }
+    .origin-body p:last-child { margin-bottom: 0; }
+
+    /* ── Belief statements ── */
+    .beliefs-section { background: var(--color-black); padding: var(--sp-32) 0; }
+    .beliefs-header {
+      text-align: center;
+      margin-bottom: var(--sp-16);
+    }
+    .beliefs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-1);
+    }
+    .belief-card--full { grid-column: 1 / -1; width: 50%; margin: 0 auto; }
+    .belief-card {
+      padding: var(--sp-12) var(--sp-10);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .belief-number {
+      font-size: var(--text-xs);
+      font-weight: var(--fw-black);
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.2);
+      margin-bottom: var(--sp-5);
+    }
+    .belief-title {
+      font-size: clamp(var(--text-xl), 2vw, var(--text-2xl));
+      font-weight: var(--fw-black);
+      letter-spacing: var(--ls-tight);
+      color: var(--color-white);
+      line-height: 1.2;
+      margin-bottom: var(--sp-4);
+    }
+    .belief-body {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,.45);
+      line-height: 1.75;
+      font-weight: var(--fw-medium);
+    }
+
+    /* ── Pillars ── */
+    .pillars-section { background: #0a0a0a; }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-5);
+      margin-top: var(--sp-16);
+    }
+    .pillar-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+      border-top: 2px solid rgba(255,255,255,.15);
+      border-radius: 18px;
+      padding: var(--sp-12) var(--sp-10);
+      display: flex;
+      flex-direction: column;
+      transition: background .25s ease, border-top-color .25s ease, transform .25s ease, box-shadow .25s ease;
+    }
+    .pillar-card:hover {
+      background: rgba(255,255,255,.07);
+      border-top-color: rgba(255,255,255,.45);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 52px rgba(0,0,0,.55);
+    }
+    .pillar-tag {
+      font-size: 11px;
+      font-weight: var(--fw-black);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.28);
+      margin-bottom: var(--sp-6);
+    }
+    .pillar-title {
+      font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+      font-weight: var(--fw-black);
+      letter-spacing: var(--ls-tighter);
+      color: var(--color-white);
+      line-height: 1.1;
+      margin-bottom: var(--sp-5);
+    }
+    .pillar-body {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,.45);
+      line-height: 1.8;
+      font-weight: var(--fw-medium);
+    }
+    @media (max-width: 900px) {
+      .pillars-grid { grid-template-columns: 1fr; max-width: 560px; }
+    }
+
+    /* ── Timeline / What's ahead ── */
+    .timeline { margin-top: var(--sp-16); }
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 110px 28px 1fr;
+      gap: 0 var(--sp-7);
+      padding: var(--sp-10) 0;
+      align-items: start;
+    }
+    .timeline-period {
+      font-size: var(--text-sm);
+      font-weight: var(--fw-black);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--color-black);
+      padding-top: 2px;
+      line-height: 1.3;
+    }
+    .timeline-period.upcoming {
+      color: var(--color-grey);
+      font-weight: var(--fw-semibold);
+    }
+    /* single vertical line through all dots */
+    .timeline {
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      /* centre of the dot column: 110px (year col) + 1.75rem (gap) + 14px (half of 28px dot col) */
+      left: calc(110px + 1.75rem + 14px);
+      top: calc(2.5rem + 9px);
+      bottom: calc(2.5rem + 9px);
+      width: 1px;
+      background: #D4D4D4;
+      z-index: 0;
+    }
+    .timeline-dot-col {
+      display: flex;
+      justify-content: center;
+      padding-top: 2px;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--color-black);
+      flex-shrink: 0;
+    }
+    .timeline-dot.upcoming {
+      background: var(--color-white);
+      border: 2px solid rgba(0,0,0,.22);
+    }
+    .timeline-spine { display: none; }
+    .timeline-content h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-tight);
+      margin-bottom: var(--sp-3);
+      line-height: 1.3;
+    }
+    .timeline-content p {
+      font-size: var(--text-sm);
+      color: var(--color-grey);
+      line-height: 1.7;
+    }
+    .timeline-row--active .timeline-content h3 {
+      font-size: var(--text-xl);
+    }
+    .timeline-row--active .timeline-content p {
+      font-size: var(--text-base);
+    }
+    @media (max-width: 640px) {
+      .timeline-row { grid-template-columns: 70px 22px 1fr; gap: 0 var(--sp-3); }
+    }
+
+    @media (max-width: 960px) {
+      .origin-grid  { grid-template-columns: 1fr; gap: var(--sp-10); }
+      .beliefs-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .about-hero { padding: 130px 0 var(--sp-20); }
+      .about-hero-h1 { font-size: clamp(2.5rem, 11vw, 3.5rem); }
+      .timeline-row { grid-template-columns: 70px 22px 1fr; gap: 0 var(--sp-3); }
+    }
+    @media (max-width: 640px) {
+      .origin-grid { grid-template-columns: 1fr; gap: var(--sp-8); }
+      .beliefs-grid { grid-template-columns: 1fr; }
+      .belief-card--full { width: 100%; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 60px 20px 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <svg width="28" height="28" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="16" y="25" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">F</text>
+          <path d="M2 31 Q10 27 16 29 Q22 27 30 31" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span class="nav-logo-word">Foundera</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="about.html"      class="nav-link is-active">Our Story</a></li>
+        <li><a href="what-we-do.html" class="nav-link">What We Do</a></li>
+        <li><a href="events.html"     class="nav-link">Events</a></li>
+        <li><a href="resources.html" class="nav-link">Resources</a></li>
+        <li><a href="partners.html"   class="nav-link">Partners</a></li>
+        <li><a href="community.html"  class="nav-link">Community</a></li>
+      </ul>
+      <a href="community.html" class="btn btn-primary">Join the Movement</a>
+      <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="navMobile">
+    <a href="about.html" class="nav-mobile-link is-active">Our Story</a>
+    <a href="what-we-do.html" class="nav-mobile-link">What We Do</a>
+    <a href="events.html" class="nav-mobile-link">Events</a>
+    <a href="resources.html" class="nav-mobile-link">Resources</a>
+    <a href="partners.html" class="nav-mobile-link">Partners</a>
+    <a href="community.html" class="nav-mobile-link">Community</a>
+    <a href="community.html#join" class="btn btn-primary btn-lg nav-mobile-cta">Join the Movement</a>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="about-hero">
+      <div class="container">
+        <p class="label reveal" style="margin-bottom:var(--sp-5)">Our Story</p>
+        <h1 class="about-hero-h1 reveal d1">Built because<br>it was missing.</h1>
+        <p class="about-hero-sub reveal d2">Foundera exists for young Australians who have the capability, the drive and the hunger to build something real, but were never given the room, the access or the connections to make it happen.</p>
+      </div>
+    </section>
+
+    <!-- WHY WE STARTED -->
+    <section class="section">
+      <div class="container">
+        <div class="origin-grid">
+          <div class="reveal">
+            <p class="origin-label">Why we started</p>
+            <h2 class="origin-headline">The gap between ambition and access is too wide.</h2>
+          </div>
+          <div class="origin-body reveal d1">
+            <p>In Australia, there is no shortage of ambitious young people. Walk into any university lecture hall, scroll through any LinkedIn feed, sit in any corporate office. You will find people in their late teens and early twenties who are extraordinary. They have ideas, energy and the work ethic to back it up.</p>
+            <p>What they do not have is the room. The right introduction at the right moment. The mentor who tells them the truth. The network that opens a door before they even know the door exists.</p>
+            <p>Foundera was built to close that gap. Not with a course. Not with a certificate. Not with a LinkedIn post that disappears by tomorrow. We built a movement. Real events where you walk away with something. A community that actually knows your name. Connections that do not expire when the networking event ends. This is Foundera.</p>
+            <blockquote style="margin:var(--sp-8) 0 0; padding:var(--sp-6) var(--sp-8); border-left:3px solid var(--color-black); background:var(--color-off-white); border-radius:0 var(--r-card) var(--r-card) 0;">
+              <p style="font-size:var(--text-base); font-weight:var(--fw-bold); color:var(--color-black); line-height:1.5; margin:0; font-style:italic;">"You are one decision away from a completely different life. The only question is whether you are going to make it, or keep waiting for someone to make it for you."</p>
+              <p style="margin:var(--sp-3) 0 0; font-size:var(--text-xs); font-weight:var(--fw-black); letter-spacing:.1em; text-transform:uppercase; color:var(--color-grey);">Foundera</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider container"></div>
+
+    <!-- WHAT WE BELIEVE -->
+    <section class="beliefs-section">
+      <div class="container">
+        <div class="beliefs-header reveal">
+          <p class="label label-light" style="margin-bottom:var(--sp-4)">What We Believe</p>
+          <h2 class="headline headline-white">The principles<br>we build on.</h2>
+        </div>
+        <div class="beliefs-grid reveal d1">
+          <div class="belief-card">
+            <p class="belief-number">01</p>
+            <h3 class="belief-title">Capability over connections.</h3>
+            <p class="belief-body">Too many rooms are filled by people who know the right people, not people who can actually deliver. We are here to change that. At Foundera, what you can do will always matter more than who you know.</p>
+          </div>
+          <div class="belief-card">
+            <p class="belief-number">02</p>
+            <h3 class="belief-title">Lived experience over theory.</h3>
+            <p class="belief-body">We do not bring in speakers who studied success from a textbook. We bring in people who built it, lost it and built it again. Real experience is the only thing that actually sticks.</p>
+          </div>
+          <div class="belief-card">
+            <p class="belief-number">03</p>
+            <h3 class="belief-title">The right room changes everything.</h3>
+            <p class="belief-body">The most important conversations in your career will not happen in an auditorium. They will happen across a table with someone who has time for you. Every room we build is designed for that moment.</p>
+          </div>
+          <div class="belief-card">
+            <p class="belief-number">04</p>
+            <h3 class="belief-title">Access is the only unfair advantage.</h3>
+            <p class="belief-body">Most young Australians are not held back by ability. They are held back by not knowing the right person, not being in the right room, not getting the introduction that changes everything. That is the problem Foundera was built to solve.</p>
+          </div>
+          <div class="belief-card belief-card--full">
+            <p class="belief-number">05</p>
+            <h3 class="belief-title">You are not behind. You are early.</h3>
+            <p class="belief-body">The biggest lie young Australians are told is that they have already missed their moment. They have not. The companies, careers and movements that will define the next decade are being built right now by people their age. That includes you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE THREE PILLARS -->
+    <section class="section pillars-section">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:var(--sp-4)">
+          <p class="label label-light" style="margin-bottom:var(--sp-4)">Who We Serve</p>
+          <h2 class="headline headline-white">Three tracks.<br>One community.</h2>
+        </div>
+        <div class="pillars-grid">
+          <div class="pillar-card reveal">
+            <p class="pillar-tag">Track 01</p>
+            <h3 class="pillar-title">The Founder</h3>
+            <p class="pillar-body">You have an idea or you are already building. You need investors who take you seriously, mentors who have actually done it and a community that moves at your pace. That is what we built this for.</p>
+          </div>
+          <div class="pillar-card reveal d1">
+            <p class="pillar-tag">Track 02</p>
+            <h3 class="pillar-title">The Professional</h3>
+            <p class="pillar-body">You are in the room. Now you want to lead it. We connect you with the senior leaders, mentors and peer networks that turn a good career into an exceptional one.</p>
+          </div>
+          <div class="pillar-card reveal d2">
+            <p class="pillar-tag">Track 03</p>
+            <h3 class="pillar-title">The Student</h3>
+            <p class="pillar-body">You are earlier than you think and further ahead than you feel. We partner with schools and universities to give students the access, mentorship and real-world exposure that no degree programme offers on its own.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider container"></div>
+
+    <!-- WHAT'S AHEAD -->
+    <section class="section">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:var(--sp-4)">
+          <p class="label" style="margin-bottom:var(--sp-4)">The Roadmap</p>
+          <h2 class="headline">Where we are<br>headed.</h2>
+        </div>
+        <div class="timeline reveal d1">
+          <div class="timeline-row timeline-row--active">
+            <span class="timeline-period">2026</span>
+            <div class="timeline-dot-col">
+              <span class="timeline-dot"></span>
+              <span class="timeline-spine"></span>
+            </div>
+            <div class="timeline-content">
+              <h3>Foundera goes live in Sydney</h3>
+              <p>The community launches. Founding members join. The Access Files go live. This is not a soft launch. This is the beginning of something that matters, and the founding members are the people who make it real.</p>
+            </div>
+          </div>
+          <div class="timeline-row">
+            <span class="timeline-period upcoming">Mid 2026</span>
+            <div class="timeline-dot-col">
+              <span class="timeline-dot upcoming"></span>
+              <span class="timeline-spine"></span>
+            </div>
+            <div class="timeline-content">
+              <h3>The first events hit the calendar</h3>
+              <p>The Launchpad pitch night. Industry Leaders Panels. Skill workshops. The first mentoring cohort goes live, pairing young Australians one on one with professionals in their exact field. Small rooms, honest conversations, real outcomes. The community starts to compound. Every event is designed so you walk out with something you did not have before.</p>
+            </div>
+          </div>
+          <div class="timeline-row">
+            <span class="timeline-period upcoming">Late 2026</span>
+            <div class="timeline-dot-col">
+              <span class="timeline-dot upcoming"></span>
+              <span class="timeline-spine"></span>
+            </div>
+            <div class="timeline-content">
+              <h3>Schools, campuses and corporate partners</h3>
+              <p>We bring The Foundera Business Challenge to high schools and universities across New South Wales. Case competitions, industry simulations and summits that connect students directly with the firms that are hiring. Corporate partners come on board to judge, mentor and hire directly from the challenge. Real stakes. Real opportunity.</p>
+            </div>
+          </div>
+          <div class="timeline-row">
+            <span class="timeline-period upcoming">2027</span>
+            <div class="timeline-dot-col">
+              <span class="timeline-dot upcoming"></span>
+              <span class="timeline-spine"></span>
+            </div>
+            <div class="timeline-content">
+              <h3>A national movement</h3>
+              <p>Melbourne. Brisbane. Beyond. Every city in Australia has young people with the drive and the capability who are waiting for the room. We are building that room everywhere. Same mission. Wider reach. The room just gets bigger.</p>
+            </div>
+          </div>
+          <div class="timeline-row">
+            <span class="timeline-period upcoming">2028+</span>
+            <div class="timeline-dot-col">
+              <span class="timeline-dot upcoming"></span>
+            </div>
+            <div class="timeline-content">
+              <h3>What this becomes</h3>
+              <p>A national network of founders, professionals and students who found the room and never forgot what it felt like to need it. Alumni who return as mentors, speakers and investors for the next generation coming through. An annual summit that brings the whole movement together. A platform that proves capability was never the issue. Access was. And we fixed it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="email-section">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="headline headline-white" style="margin-bottom:var(--sp-5)">Be part of<br>what's being built.</h2>
+          <p class="label label-light" style="letter-spacing:.06em">Join the community. Get notified on events. Be in the room.</p>
+        </div>
+        <div class="reveal d1" style="margin-top:var(--sp-10); display:flex; gap:var(--sp-4); justify-content:center; flex-wrap:wrap;">
+          <a href="community.html" class="btn btn-outline-white btn-lg">Join the Community</a>
+          <a href="events.html"    class="btn btn-outline-white btn-lg">See Events</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="nav-logo" style="margin-bottom:var(--sp-4)">
+            <svg width="22" height="22" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="16" y="25" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">F</text>
+              <path d="M2 31 Q10 27 16 29 Q22 27 30 31" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+              <path d="M2 35.5 Q10 31.5 16 33.5 Q22 31.5 30 35.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="nav-logo-word" style="font-size:var(--text-base)">Foundera</span>
+          </a>
+          <p class="footer-brand-tagline">Where founders are made.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/foundera.au" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.tiktok.com/@foundera.au" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            <a href="https://www.youtube.com/@foundera" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.linkedin.com/company/founderaau" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="mailto:team@founderaa.com.au" class="footer-social-icon" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Platform</p>
+          <nav class="footer-col-links">
+            <a href="what-we-do.html" class="footer-link">What We Do</a>
+            <a href="events.html"     class="footer-link">Events</a>
+            <a href="resources.html" class="footer-link">The Access Files</a>
+            <a href="community.html"  class="footer-link">Community</a>
+          </nav>
+        </div>
+        <div>
+          <p class="footer-col-title">Connect</p>
+          <nav class="footer-col-links">
+            <a href="https://www.instagram.com/foundera.au" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+            <a href="https://www.tiktok.com/@foundera.au" target="_blank" rel="noopener noreferrer" class="footer-link">TikTok</a>
+            <a href="https://www.youtube.com/@foundera" target="_blank" rel="noopener noreferrer" class="footer-link">YouTube</a>
+            <a href="https://www.linkedin.com/company/founderaau" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+            <a href="https://www.skool.com" target="_blank" rel="noopener noreferrer" class="footer-link">Skool Community</a>
+            <a href="partners.html"                                           class="footer-link">Become a Partner</a>
+            <a href="partners.html#speak"                                     class="footer-link">Speak at an Event</a>
+            <a href="mailto:team@founderaa.com.au"                            class="footer-link">Contact</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Foundera. All rights reserved.</p>
+        <div class="footer-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    /* Nav hide/show */
+    (function(){var nav=document.getElementById('nav'),last=0,tick=false;window.addEventListener('scroll',function(){if(!tick){requestAnimationFrame(function(){var y=window.scrollY;nav.classList.toggle('scrolled',y>10);nav.classList.toggle('hidden',y>last&&y>80);last=y;tick=false;});tick=true;}},{passive:true});})();
+
+    /* Scroll reveal */
+    (function(){var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:0.08,rootMargin:'0px 0px -32px 0px'});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});})();
+
+    /* Mobile nav toggle */
+    (function(){
+      var burger = document.getElementById('navBurger');
+      var mobile = document.getElementById('navMobile');
+      if (!burger || !mobile) return;
+      burger.addEventListener('click', function(){
+        var open = mobile.classList.toggle('open');
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      mobile.querySelectorAll('a').forEach(function(a){
+        a.addEventListener('click', function(){
+          mobile.classList.remove('open');
+          burger.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
