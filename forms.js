@@ -40,6 +40,25 @@
     });
   });
 
+  var W3F_KEY = '0e31958d-aa00-47ec-aa21-d19997504d31';
+
+  function notifyEmail(subject, data, onDone) {
+    var message = Object.entries(data).map(function(pair) {
+      return pair[0] + ': ' + pair[1];
+    }).join('\n');
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: W3F_KEY,
+        subject: subject,
+        message: message,
+        from_name: 'Foundera Website',
+        email: data.email || 'noreply@founderaa.com'
+      })
+    }).finally(onDone);
+  }
+
   /* ── Partner enquiry form ── */
   (function () {
     var form = null;
@@ -52,15 +71,17 @@
       var btn = form.querySelector('button[type="submit"]');
       btn.disabled = true;
       btn.textContent = 'Sending...';
-      insert('partner_enquiries', {
+      var data = {
         name:             form.querySelector('[name="name"]').value,
         company:          form.querySelector('[name="company"]').value,
         role:             form.querySelector('[name="role"]').value,
         email:            form.querySelector('[name="email"]').value,
         partnership_type: form.querySelector('[name="partnership_type"]').value,
         about:            form.querySelector('[name="about"]').value
-      },
+      };
+      insert('partner_enquiries', data,
         function () {
+          notifyEmail('New Partner Enquiry — ' + data.company, data, function() {});
           form.innerHTML = '<p style="font-size:1rem;font-weight:600;padding:2rem 0;">Thanks! We\'ll be in touch within 48 hours.</p>';
         },
         function () {
@@ -83,15 +104,17 @@
       var btn = form.querySelector('button[type="submit"]');
       btn.disabled = true;
       btn.textContent = 'Sending...';
-      insert('speaker_enquiries', {
+      var data = {
         name:         form.querySelector('[name="name"]').value,
         email:        form.querySelector('[name="email"]').value,
         topic:        form.querySelector('[name="topic"]').value,
         background:   form.querySelector('[name="background"]').value,
         social:       form.querySelector('[name="social"]').value,
         anything_else: form.querySelector('[name="anything_else"]').value
-      },
+      };
+      insert('speaker_enquiries', data,
         function () {
+          notifyEmail('New Speaker Application — ' + data.name, data, function() {});
           form.innerHTML = '<p style="font-size:1rem;font-weight:600;padding:2rem 0;">Application received. We review every one personally.</p>';
         },
         function () {
