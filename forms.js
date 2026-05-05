@@ -81,7 +81,7 @@
       };
       insert('partner_enquiries', data,
         function () {
-          notifyEmail('New Partner Enquiry — ' + data.company, data, function() {});
+          notifyEmail('New Partner Enquiry: ' + data.company, data, function() {});
           form.innerHTML = '<p style="font-size:1rem;font-weight:600;padding:2rem 0;">Thanks! We\'ll be in touch within 48 hours.</p>';
         },
         function () {
@@ -114,7 +114,7 @@
       };
       insert('speaker_enquiries', data,
         function () {
-          notifyEmail('New Speaker Application — ' + data.name, data, function() {});
+          notifyEmail('New Speaker Application: ' + data.name, data, function() {});
           form.innerHTML = '<p style="font-size:1rem;font-weight:600;padding:2rem 0;">Application received. We review every one personally.</p>';
         },
         function () {
