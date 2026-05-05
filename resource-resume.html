@@ -438,16 +438,38 @@
     .resume-doc .r-skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; }
     .resume-doc .r-skill-item { font-size: 11px; color: #333; }
     .resume-doc .r-footer { margin-top: 28px; padding-top: 10px; border-top: 1px solid #e8e8e8; text-align: center; font-size: 9px; color: #bbb; letter-spacing: .05em; }
-    /* Finance template uses a left accent bar on sections */
+    /* Finance: left accent bar on section heads */
     .resume-doc.finance .r-section-head { border-left: 3px solid #0a0a0a; padding-left: 8px; }
-    /* Law template uses a slightly more formal look */
+    /* Law: formal serif with centred header */
     .resume-doc.law hr { border-top-width: 2px; }
-    .resume-doc.law .r-name { font-family: Georgia, serif; letter-spacing: -.01em; }
-    /* Modern template uses a two-tone header */
+    .resume-doc.law .r-name { font-family: Georgia, serif; letter-spacing: -.01em; text-align: center; }
+    .resume-doc.law .r-contact { justify-content: center; }
+    .resume-doc.law .r-section-head { font-family: Georgia, serif; text-transform: none; font-size: 13px; letter-spacing: 0; border-bottom: 1px solid #aaa; padding-bottom: 4px; }
+    /* Corporate: grey header block + underlined section heads */
+    .resume-doc.corporate .r-header-box { background: #f5f4f1; margin: -40px -48px 28px; padding: 30px 48px; }
+    .resume-doc.corporate .r-section-head { border-bottom: 2px solid #0a0a0a; padding-bottom: 4px; }
+    /* Modern: dark two-tone header */
     .resume-doc.modern .r-header { background: #0a0a0a; margin: -40px -48px 28px; padding: 30px 48px; }
     .resume-doc.modern .r-name  { color: #fff; }
     .resume-doc.modern .r-contact { color: rgba(255,255,255,.6); }
     .resume-doc.modern hr { border-top-color: #e0e0e0; }
+    /* Accounting: light tinted band on section heads */
+    .resume-doc.accounting .r-section-head { background: #f0efe8; padding: 3px 10px; margin: 0 -10px 10px; }
+    /* Marketing: bold name + extending line on section heads */
+    .resume-doc.marketing { border-top: 4px solid #0a0a0a; padding-top: 32px; }
+    .resume-doc.marketing .r-name { font-size: 30px; letter-spacing: -.04em; }
+    .resume-doc.marketing .r-section-head { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+    .resume-doc.marketing .r-section-head::after { content: ''; flex: 1; height: 1px; background: #ddd; display: block; }
+    .resume-doc.marketing .r-profile { font-size: 11px; color: #555; line-height: 1.65; margin-bottom: 20px; }
+    /* Corporate: professional summary block */
+    .resume-doc.corporate .r-summary { font-size: 11px; color: #444; line-height: 1.65; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid #eee; }
+    /* Accounting: two-column sidebar layout */
+    .resume-doc.accounting .r-cols { display: flex; gap: 28px; align-items: flex-start; }
+    .resume-doc.accounting .r-col-side { width: 190px; flex-shrink: 0; }
+    .resume-doc.accounting .r-col-main { flex: 1; min-width: 0; }
+    /* Modern: core competencies strip */
+    .resume-doc.modern .r-skills-strip { display: flex; flex-wrap: wrap; gap: 5px 20px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid #e0e0e0; }
+    .resume-doc.modern .r-skills-strip span { font-size: 10px; color: #555; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
 
     @media print {
       body > *:not(.tmpl-modal) { display: none !important; }
@@ -872,7 +894,7 @@
               </button>
               <div class="acc-body" aria-hidden="true">
                 <div class="acc-inner">
-                  <p>These templates are built for the roles Foundera works with. Each one is ATS-clean, correctly formatted for the Australian market and structured for the specific industry. Use them as your base. Put your own content in. Do not change the structure. All templates are free. Download them, make them yours.</p>
+                  <p>These templates are built for the roles Foundera works with. Each one is ATS-clean, correctly formatted for the Australian market and structured for the specific industry. One page. That is all you need. Recruiters do not want your life story, they want to find the right things fast. Use them as your base. Put your own content in. Do not change the structure. All templates are free. Download them, make them yours.</p>
                   <div class="template-grid">
 
                     <!-- Template 1: Finance -->
@@ -905,14 +927,14 @@
                     <div class="template-card">
                       <div class="template-preview">
                         <div class="tp-badge">Law</div>
-                        <div class="tp-name" style="font-family:Georgia,serif">[Your Name]</div>
-                        <div class="tp-contact">phone · email · linkedin</div>
+                        <div class="tp-name" style="font-family:Georgia,serif; text-align:center;">[Your Name]</div>
+                        <div class="tp-contact" style="text-align:center;">phone · email · linkedin</div>
                         <div class="tp-divider" style="border-top:2px solid #333;height:0"></div>
-                        <div class="tp-section-head">Education &amp; Academic Awards</div>
+                        <div class="tp-section-head" style="font-family:Georgia,serif; text-transform:none; font-size:6.5px; border-bottom:1px solid #aaa; padding-bottom:2px; margin-bottom:3px;">Education &amp; Academic Awards</div>
                         <div class="tp-line w80"></div><div class="tp-line w65"></div>
-                        <div class="tp-section-head">Legal Experience</div>
+                        <div class="tp-section-head" style="font-family:Georgia,serif; text-transform:none; font-size:6.5px; border-bottom:1px solid #aaa; padding-bottom:2px; margin-bottom:3px;">Legal Experience</div>
                         <div class="tp-line w90"></div><div class="tp-line w70"></div>
-                        <div class="tp-section-head">Pro Bono &amp; Leadership</div>
+                        <div class="tp-section-head" style="font-family:Georgia,serif; text-transform:none; font-size:6.5px; border-bottom:1px solid #aaa; padding-bottom:2px; margin-bottom:3px;">Pro Bono &amp; Leadership</div>
                         <div class="tp-line w75"></div>
                       </div>
                       <div class="template-info">
@@ -929,17 +951,20 @@
 
                     <!-- Template 3: Corporate Classic -->
                     <div class="template-card">
-                      <div class="template-preview">
-                        <div class="tp-badge">Corporate</div>
-                        <div class="tp-name">[Your Name]</div>
-                        <div class="tp-contact">phone · email · linkedin · location</div>
-                        <div class="tp-divider"></div>
-                        <div class="tp-section-head">Education</div>
-                        <div class="tp-line w75"></div><div class="tp-line w55"></div>
-                        <div class="tp-section-head">Work Experience</div>
-                        <div class="tp-line w90"></div><div class="tp-line w65"></div><div class="tp-line w80"></div>
-                        <div class="tp-section-head">Skills &amp; Tools</div>
-                        <div class="tp-line w60"></div>
+                      <div class="template-preview" style="padding:0; overflow:hidden;">
+                        <div style="background:#f5f4f1; padding:10px 12px 8px; border-bottom:1px solid #e0e0e0;">
+                          <div class="tp-badge">Corporate</div>
+                          <div class="tp-name">[Your Name]</div>
+                          <div class="tp-contact">phone · email · linkedin · location</div>
+                        </div>
+                        <div style="padding:8px 12px 10px;">
+                          <div class="tp-section-head" style="border-bottom:2px solid #0a0a0a; padding-bottom:2px; margin-bottom:4px;">Education</div>
+                          <div class="tp-line w75"></div><div class="tp-line w55"></div>
+                          <div class="tp-section-head" style="border-bottom:2px solid #0a0a0a; padding-bottom:2px; margin-bottom:4px;">Work Experience</div>
+                          <div class="tp-line w90"></div><div class="tp-line w65"></div><div class="tp-line w80"></div>
+                          <div class="tp-section-head" style="border-bottom:2px solid #0a0a0a; padding-bottom:2px; margin-bottom:4px;">Skills</div>
+                          <div class="tp-line w60"></div>
+                        </div>
                       </div>
                       <div class="template-info">
                         <div class="template-info-left">
@@ -988,11 +1013,11 @@
                         <div class="tp-name">[Your Name]</div>
                         <div class="tp-contact">phone · email · linkedin · melbourne</div>
                         <div class="tp-divider"></div>
-                        <div class="tp-section-head">Education</div>
-                        <div class="tp-accent"><div class="tp-line w80"></div><div class="tp-line w55"></div></div>
-                        <div class="tp-section-head">Work Experience</div>
+                        <div class="tp-section-head" style="background:#f0efe8; padding:2px 5px; margin:4px -5px 3px;">Education</div>
+                        <div class="tp-line w80"></div><div class="tp-line w55"></div>
+                        <div class="tp-section-head" style="background:#f0efe8; padding:2px 5px; margin:4px -5px 3px;">Work Experience</div>
                         <div class="tp-line w90"></div><div class="tp-line w70"></div><div class="tp-line w80"></div>
-                        <div class="tp-section-head">Technical Skills</div>
+                        <div class="tp-section-head" style="background:#f0efe8; padding:2px 5px; margin:4px -5px 3px;">Technical Skills</div>
                         <div class="tp-line w65"></div>
                       </div>
                       <div class="template-info">
@@ -1009,16 +1034,25 @@
 
                     <!-- Template 6: Marketing & Communications -->
                     <div class="template-card">
-                      <div class="template-preview">
+                      <div class="template-preview" style="border-top:3px solid #0a0a0a;">
                         <div class="tp-badge">Marketing &amp; Comms</div>
-                        <div class="tp-name">[Your Name]</div>
+                        <div class="tp-name" style="font-size:11px; letter-spacing:-.03em;">[Your Name]</div>
                         <div class="tp-contact">phone · email · linkedin · sydney</div>
                         <div class="tp-divider"></div>
-                        <div class="tp-section-head">Education</div>
+                        <div style="display:flex; align-items:center; gap:4px; margin:4px 0 3px;">
+                          <div class="tp-section-head" style="margin:0; white-space:nowrap;">Education</div>
+                          <div style="flex:1; height:1px; background:#ddd;"></div>
+                        </div>
                         <div class="tp-line w75"></div><div class="tp-line w50"></div>
-                        <div class="tp-section-head">Experience</div>
+                        <div style="display:flex; align-items:center; gap:4px; margin:4px 0 3px;">
+                          <div class="tp-section-head" style="margin:0; white-space:nowrap;">Experience</div>
+                          <div style="flex:1; height:1px; background:#ddd;"></div>
+                        </div>
                         <div class="tp-line w90"></div><div class="tp-line w65"></div><div class="tp-line w80"></div>
-                        <div class="tp-section-head">Tools &amp; Channels</div>
+                        <div style="display:flex; align-items:center; gap:4px; margin:4px 0 3px;">
+                          <div class="tp-section-head" style="margin:0; white-space:nowrap;">Tools</div>
+                          <div style="flex:1; height:1px; background:#ddd;"></div>
+                        </div>
                         <div class="tp-line w70"></div>
                       </div>
                       <div class="template-info">
@@ -1214,12 +1248,14 @@
             </button>
           </div>
         </div>
-        <div class="resume-doc">
-          <div class="r-name">[Your Full Name]</div>
-          <div class="r-contact">
-            <span>0400 000 000</span><span>your@email.com</span><span>linkedin.com/in/yourname</span><span>Melbourne, VIC</span>
+        <div class="resume-doc corporate">
+          <div class="r-header-box">
+            <div class="r-name">[Your Full Name]</div>
+            <div class="r-contact">
+              <span>0400 000 000</span><span>your@email.com</span><span>linkedin.com/in/yourname</span><span>Melbourne, VIC</span>
+            </div>
           </div>
-          <hr>
+          <div class="r-summary">Results-oriented commerce graduate with experience across operations, strategy and marketing. Proven ability to manage cross-functional projects, deliver data-driven insights and contribute to team performance from day one.</div>
           <div class="r-section">
             <div class="r-section-head">Education</div>
             <div class="r-entry">
@@ -1292,6 +1328,9 @@
               <span>0400 000 000</span><span>your@email.com</span><span>linkedin.com/in/yourname</span><span>Brisbane, QLD</span>
             </div>
           </div>
+          <div class="r-skills-strip">
+            <span>Product Strategy</span><span>Growth Analytics</span><span>Content Marketing</span><span>User Research</span><span>Data Analysis</span><span>Go-to-Market</span>
+          </div>
           <div class="r-section">
             <div class="r-section-head">Experience</div>
             <div class="r-entry">
@@ -1349,65 +1388,68 @@
             </button>
           </div>
         </div>
-        <div class="resume-doc finance">
+        <div class="resume-doc accounting">
           <div class="r-name">[Your Full Name]</div>
           <div class="r-contact">
             <span>0400 000 000</span><span>your@email.com</span><span>linkedin.com/in/yourname</span><span>Melbourne, VIC</span>
           </div>
           <hr>
-          <div class="r-section">
-            <div class="r-section-head">Education</div>
-            <div class="r-entry">
-              <div class="r-entry-header"><span class="r-org">Monash University</span><span class="r-date">Feb 2021  to  Nov 2024</span></div>
-              <div class="r-role">Bachelor of Commerce (Accounting) / Bachelor of Business Administration, WAM 79.6</div>
-              <ul>
-                <li>Dean's List 2023, top 10% of cohort</li>
-                <li>Relevant coursework: Financial Accounting, Management Accounting, Auditing, Taxation Law, Corporate Reporting</li>
-                <li>Completed CPA Australia student membership, commenced CPA Programme (Foundation level)</li>
-              </ul>
+          <div class="r-cols">
+            <div class="r-col-side">
+              <div class="r-section">
+                <div class="r-section-head">Education</div>
+                <div class="r-entry">
+                  <div class="r-org">Monash University</div>
+                  <div class="r-role">B.Com (Accounting) / BBA</div>
+                  <div class="r-date" style="margin-top:2px;">Feb 2021 to Nov 2024</div>
+                  <div style="font-size:10px; color:#444; margin-top:6px; line-height:1.6;">WAM 79.6 · Dean's List 2023<br>Top 10% of cohort<br>CPA Australia student member</div>
+                </div>
+              </div>
+              <div class="r-section">
+                <div class="r-section-head">Technical Skills</div>
+                <div style="display:flex; flex-direction:column; gap:6px;">
+                  <div class="r-skill-item">Xero, MYOB AccountRight</div>
+                  <div class="r-skill-item">Excel (advanced)</div>
+                  <div class="r-skill-item">CaseWare, SharePoint</div>
+                  <div class="r-skill-item">Microsoft Office Suite</div>
+                  <div class="r-skill-item">SAP (basic)</div>
+                  <div class="r-skill-item">SQL (basic)</div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="r-section">
-            <div class="r-section-head">Work Experience</div>
-            <div class="r-entry">
-              <div class="r-entry-header"><span class="r-org">[Big 4 / Mid-tier Firm Name], Audit &amp; Assurance</span><span class="r-date">Nov 2023  to  Feb 2024</span></div>
-              <div class="r-role">Vacation Clerk · External Audit</div>
-              <ul>
-                <li>Assisted senior auditors on two listed client engagements, performing substantive testing on accounts receivable, inventory and fixed assets totalling $34M in balance sheet exposure</li>
-                <li>Prepared lead schedules and working papers in accordance with firm methodology; reviewed and cleared by senior associate within agreed timelines on both engagements</li>
-                <li>Reconciled client trial balances to general ledger and identified a $48,000 accruals posting error, escalated and resolved prior to audit sign-off</li>
-              </ul>
-            </div>
-            <div class="r-entry">
-              <div class="r-entry-header"><span class="r-org">[Company Name]</span><span class="r-date">Jan 2023  to  Jul 2023</span></div>
-              <div class="r-role">Accounts Assistant (Part-time)</div>
-              <ul>
-                <li>Processed accounts payable and receivable transactions in Xero, reconciling weekly bank statements across three business entities</li>
-                <li>Prepared monthly BAS workings and GST reconciliations under supervision of the Financial Controller</li>
-                <li>Reduced debtor days from 42 to 31 over six months by implementing a structured follow-up schedule for overdue invoices</li>
-              </ul>
-            </div>
-          </div>
-          <div class="r-section">
-            <div class="r-section-head">Leadership &amp; Activities</div>
-            <div class="r-entry">
-              <div class="r-entry-header"><span class="r-org">Monash Accounting Students Society</span><span class="r-date">Mar 2022  to  Nov 2023</span></div>
-              <div class="r-role">Treasurer</div>
-              <ul>
-                <li>Managed a $28,000 annual budget across 16 events; produced monthly financial reports for the executive committee and delivered a year-end surplus of $3,200</li>
-                <li>Negotiated sponsorship agreements with three accounting firms, securing $9,500 in event funding</li>
-              </ul>
-            </div>
-          </div>
-          <div class="r-section">
-            <div class="r-section-head">Technical Skills</div>
-            <div class="r-skills-grid">
-              <div class="r-skill-item">Xero, MYOB AccountRight (intermediate)</div>
-              <div class="r-skill-item">Excel (advanced: pivot tables, VLOOKUP, macros)</div>
-              <div class="r-skill-item">CaseWare, Teams and SharePoint (firm tools)</div>
-              <div class="r-skill-item">Microsoft Office Suite (professional proficiency)</div>
-              <div class="r-skill-item">SAP (basic exposure via university coursework)</div>
-              <div class="r-skill-item">SQL (basic data queries)</div>
+            <div class="r-col-main">
+              <div class="r-section">
+                <div class="r-section-head">Work Experience</div>
+                <div class="r-entry">
+                  <div class="r-entry-header"><span class="r-org">[Big 4 / Mid-tier Firm], Audit &amp; Assurance</span><span class="r-date">Nov 2023 to Feb 2024</span></div>
+                  <div class="r-role">Vacation Clerk · External Audit</div>
+                  <ul>
+                    <li>Assisted senior auditors on two listed client engagements, performing substantive testing on accounts receivable, inventory and fixed assets totalling $34M in balance sheet exposure</li>
+                    <li>Prepared lead schedules and working papers in accordance with firm methodology; reviewed and cleared by senior associate within agreed timelines</li>
+                    <li>Reconciled client trial balances to general ledger and identified a $48,000 accruals posting error, escalated and resolved prior to audit sign-off</li>
+                  </ul>
+                </div>
+                <div class="r-entry">
+                  <div class="r-entry-header"><span class="r-org">[Company Name]</span><span class="r-date">Jan 2023 to Jul 2023</span></div>
+                  <div class="r-role">Accounts Assistant (Part-time)</div>
+                  <ul>
+                    <li>Processed accounts payable and receivable transactions in Xero, reconciling weekly bank statements across three business entities</li>
+                    <li>Prepared monthly BAS workings and GST reconciliations under supervision of the Financial Controller</li>
+                    <li>Reduced debtor days from 42 to 31 over six months by implementing a structured follow-up schedule for overdue invoices</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="r-section">
+                <div class="r-section-head">Leadership &amp; Activities</div>
+                <div class="r-entry">
+                  <div class="r-entry-header"><span class="r-org">Monash Accounting Students Society</span><span class="r-date">Mar 2022 to Nov 2023</span></div>
+                  <div class="r-role">Treasurer</div>
+                  <ul>
+                    <li>Managed a $28,000 annual budget across 16 events; produced monthly financial reports for the executive committee and delivered a year-end surplus of $3,200</li>
+                    <li>Negotiated sponsorship agreements with three accounting firms, securing $9,500 in event funding</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div class="r-footer">Created with Foundera &nbsp;·&nbsp; foundera.com.au &nbsp;·&nbsp; Built for the capable. Not the connected.</div>
@@ -1430,12 +1472,13 @@
             </button>
           </div>
         </div>
-        <div class="resume-doc">
+        <div class="resume-doc marketing">
           <div class="r-name">[Your Full Name]</div>
           <div class="r-contact">
             <span>0400 000 000</span><span>your@email.com</span><span>linkedin.com/in/yourname</span><span>Sydney, NSW</span>
           </div>
           <hr>
+          <div class="r-profile">Creative marketing and communications professional with experience across brand strategy, content and paid digital channels. Known for turning a brief into work that moves numbers.</div>
           <div class="r-section">
             <div class="r-section-head">Education</div>
             <div class="r-entry">
